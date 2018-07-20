@@ -63,3 +63,10 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+*/xcschemes/xcschememanagement.plist
+*/xcschememanagement.plist
+.DS_Store
+TheMovies/TheMovies.xcodeproj/project.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate
+Pods
+*.p12
