@@ -66,6 +66,8 @@ fastlane/readme.md
 
 # Key
 /TheMovies/TheMovies/Utils/APIKey.swift
+/TheMoviesReal/TheMoviesReal/Utils/APIKey.swift
+xcuserdata/
 
 # xcuserstate
 TheMovies/TheMovies.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate
