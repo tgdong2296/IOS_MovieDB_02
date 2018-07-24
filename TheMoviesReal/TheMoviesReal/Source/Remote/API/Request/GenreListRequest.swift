@@ -9,7 +9,7 @@
 import Foundation
 
 class GenreListRequest: BaseRequest {
-    required init(listType: MovieListType, page: Int) {
+    required init() {
         let body: [String: Any]  = [
             "api_key": APIKey.key,
             "language": "en-US"

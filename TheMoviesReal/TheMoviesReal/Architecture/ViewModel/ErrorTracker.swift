@@ -34,3 +34,9 @@ final class ErrorTracker: SharedSequenceConvertibleType {
         subject.onCompleted()
     }
 }
+
+extension ObservableConvertibleType {
+    func trackError(_ errorTracker: ErrorTracker) -> Observable<E> {
+        return errorTracker.trackError(from: self)
+    }
+}

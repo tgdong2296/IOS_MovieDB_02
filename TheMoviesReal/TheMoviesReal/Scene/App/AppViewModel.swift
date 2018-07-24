@@ -23,8 +23,7 @@ struct AppViewModel: ViewModelType {
     let useCase: AppUseCaseType
     
     func transform(_ input: Input) -> Output {
-        let toMain = input.loadTrigger
-            .do(onNext: self.navigator.toMain)
+        let toMain = input.loadTrigger.do(onNext: self.navigator.toMain)
         return Output(toMain: toMain)
     }
 }
