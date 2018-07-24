@@ -11,4 +11,7 @@ target 'TheMoviesReal' do
 	pod 'RxCocoa'
 	pod 'Reusable'
 	pod 'AlamofireObjectMapper'
+	pod 'NSObject+Rx'
+	pod 'MBProgressHUD'
+	pod 'Cosmos'
 end
