@@ -40,7 +40,7 @@ struct APIService {
                     switch response.result {
                     case .success(let value):
                         guard let statusCode = response.response?.statusCode else {
-                            observer.on(.error(BaseError.unexpectedError))
+                            observer.onError(BaseError.unexpectedError)
                             return
                         }
                         if statusCode == 200 {

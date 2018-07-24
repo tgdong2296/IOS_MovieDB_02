@@ -12,7 +12,23 @@ enum MovieListType {
     case nowPlaying
     case popular
     case topRated
-    case upComing
+    case upComing 
+    
+    var url: String {
+        switch self {
+        case .nowPlaying:
+            return URLs.APIMovieNowPlayingURL
+            
+        case .popular:
+            return URLs.APIMoviePopularURL
+            
+        case .topRated:
+            return URLs.APIMovieTopRatedURL
+            
+        case .upComing:
+            return URLs.APIMovieUpcomingURL
+        }
+    }
 }
 
 class MovieListRequest: BaseRequest {
@@ -22,20 +38,6 @@ class MovieListRequest: BaseRequest {
             "language": "en-US",
             "page": page
         ]
-        var url = ""
-        switch listType {
-        case .nowPlaying:
-            url = URLs.APIMovieNowPlayingURL
-            
-        case .popular:
-            url = URLs.APIMoviePopularURL
-            
-        case .topRated:
-            url = URLs.APIMovieTopRatedURL
-            
-        case .upComing:
-            url = URLs.APIMovieUpcomingURL
-        }
-        super.init(url: url, requestType: .get, body: body)
+        super.init(url: listType.url, requestType: .get, body: body)
     }
 }
