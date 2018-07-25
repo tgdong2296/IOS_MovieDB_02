@@ -14,4 +14,5 @@ target 'TheMoviesReal' do
 	pod 'NSObject+Rx'
 	pod 'MBProgressHUD'
 	pod 'Cosmos'
+	pod 'SideMenu'
 end

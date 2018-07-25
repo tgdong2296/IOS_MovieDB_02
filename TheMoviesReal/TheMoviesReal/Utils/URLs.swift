@@ -22,4 +22,6 @@ struct URLs {
     static let APIGenreListURL = APIBaseUrl + "/genre/movie/list"
     
     static let APIMovieDetailURL = APIBaseUrl + "/movie/"
+    
+    static let APIMoviePosterPath = "https://image.tmdb.org/t/p/w300_and_h450_bestv2"
 }
