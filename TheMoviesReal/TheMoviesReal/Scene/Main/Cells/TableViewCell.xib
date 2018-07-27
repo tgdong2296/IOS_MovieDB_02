@@ -21,9 +21,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="289-N1-D49">
-                        <rect key="frame" x="0.0" y="23.5" width="397" height="95"/>
-                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="0.0" y="23.5" width="397" height="85"/>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cOg-aO-K1H">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,23 +30,33 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-HU-e1f">
-                        <rect key="frame" x="20" y="0.0" width="377" height="23.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-HU-e1f">
+                        <rect key="frame" x="20" y="0.0" width="309" height="23.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VG0-R0-KhS">
+                        <rect key="frame" x="339" y="0.0" width="38" height="23.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="More &gt;">
+                            <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
-                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="AlL-HU-e1f" secondAttribute="trailing" id="1oP-0O-PWe"/>
+                    <constraint firstItem="VG0-R0-KhS" firstAttribute="leading" secondItem="AlL-HU-e1f" secondAttribute="trailing" constant="10" id="2Rm-DW-tXY"/>
                     <constraint firstItem="AlL-HU-e1f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3w4-yV-b8H"/>
+                    <constraint firstItem="VG0-R0-KhS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Odx-lh-GXF"/>
                     <constraint firstItem="AlL-HU-e1f" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1/5" id="XWf-TD-lRn"/>
                     <constraint firstItem="289-N1-D49" firstAttribute="top" secondItem="AlL-HU-e1f" secondAttribute="bottom" id="auu-f2-xMO"/>
+                    <constraint firstAttribute="trailing" secondItem="VG0-R0-KhS" secondAttribute="trailing" constant="20" id="ePV-6U-m9G"/>
                     <constraint firstItem="AlL-HU-e1f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="eY1-eV-tM8"/>
                     <constraint firstAttribute="trailing" secondItem="289-N1-D49" secondAttribute="trailing" id="jD8-IX-roO"/>
                     <constraint firstItem="289-N1-D49" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mww-HY-wq1"/>
-                    <constraint firstAttribute="bottom" secondItem="289-N1-D49" secondAttribute="bottom" id="wBO-Mz-Hdg"/>
+                    <constraint firstItem="VG0-R0-KhS" firstAttribute="height" secondItem="AlL-HU-e1f" secondAttribute="height" id="tpv-II-qr8"/>
+                    <constraint firstAttribute="bottom" secondItem="289-N1-D49" secondAttribute="bottom" constant="10" id="wBO-Mz-Hdg"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -55,7 +64,7 @@
                 <outlet property="cellCollectionView" destination="289-N1-D49" id="axT-Ht-oBw"/>
                 <outlet property="cellTitle" destination="AlL-HU-e1f" id="JE3-SK-kGm"/>
             </connections>
-            <point key="canvasLocation" x="72.5" y="91.5"/>
+            <point key="canvasLocation" x="-395" y="72"/>
         </tableViewCell>
     </objects>
 </document>

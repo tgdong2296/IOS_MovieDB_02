@@ -10,15 +10,14 @@ import UIKit
 import Reusable
 import SDWebImage
 
-class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
-    private let urls = URLs.self
+final class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
     @IBOutlet private weak var moviePoster: UIImageView!
     @IBOutlet private weak var movieTitle: UILabel!
-    
+
     func setContentForCollectionViewCell(movie: Movie) {
         self.movieTitle.text = movie.title
         let posterPath = movie.posterPath
-        let url = URL(string: urls.APIMoviePosterPath + posterPath)
+        let url = URL(string: URLs.APIMoviePosterPath + posterPath)
             self.moviePoster.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img_demoposter"))
     }
     
