@@ -20,6 +20,13 @@ class GenreViewController: UIViewController, BindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configView()
+    }
+    
+    private func configView() {
+        collectionView.rx
+            .setDelegate(self)
+            .disposed(by: rx.disposeBag)
     }
     
     func bindViewModel() {
@@ -43,6 +50,15 @@ class GenreViewController: UIViewController, BindableType {
         output.indicator
             .drive(rx.isLoading)
             .disposed(by: rx.disposeBag)
+        output.selectedGenre
+            .drive()
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension GenreViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
     }
 }
 

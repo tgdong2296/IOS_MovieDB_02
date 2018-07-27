@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" id="gTV-IL-0wX" customClass="MovieCollectionCell" customModule="TheMoviesReal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="267" height="395"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="267" height="395"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_demoposter" translatesAutoresizingMaskIntoConstraints="NO" id="uAC-0d-WWz">
+                        <rect key="frame" x="0.0" y="0.0" width="267" height="395"/>
+                    </imageView>
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6j-aO-xcY">
+                        <rect key="frame" x="0.0" y="282" width="267" height="113"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name Movie Name Movie Name Movie Name Movie Name Movie Name Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flo-PB-a1m">
+                        <rect key="frame" x="8" y="282.5" width="251" height="56.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Et0-hJ-2qN" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="8" y="342" width="251" height="45"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                <real key="value" value="3.7000000000000002"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                <integer key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="O6j-aO-xcY" secondAttribute="trailing" id="319-Dg-oHM"/>
+                <constraint firstItem="O6j-aO-xcY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4A2-Qx-tOf"/>
+                <constraint firstAttribute="bottom" secondItem="Et0-hJ-2qN" secondAttribute="bottom" constant="8" id="4WO-gT-pRi"/>
+                <constraint firstAttribute="trailing" secondItem="Et0-hJ-2qN" secondAttribute="trailing" constant="8" id="8Cv-Ag-cAH"/>
+                <constraint firstItem="Flo-PB-a1m" firstAttribute="height" secondItem="O6j-aO-xcY" secondAttribute="height" multiplier="1/2" id="Bps-Y2-9eO"/>
+                <constraint firstAttribute="trailing" secondItem="uAC-0d-WWz" secondAttribute="trailing" id="FHe-5U-9jm"/>
+                <constraint firstItem="uAC-0d-WWz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KL4-UO-8YZ"/>
+                <constraint firstItem="Flo-PB-a1m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="NS1-qM-XrN"/>
+                <constraint firstItem="uAC-0d-WWz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="X8q-4R-T6w"/>
+                <constraint firstAttribute="bottom" secondItem="O6j-aO-xcY" secondAttribute="bottom" id="XCG-Wg-G8t"/>
+                <constraint firstItem="Et0-hJ-2qN" firstAttribute="top" secondItem="Flo-PB-a1m" secondAttribute="bottom" constant="3" id="aci-qi-upX"/>
+                <constraint firstItem="O6j-aO-xcY" firstAttribute="height" secondItem="uAC-0d-WWz" secondAttribute="height" multiplier="2/7" id="fHX-JY-dYM"/>
+                <constraint firstItem="Et0-hJ-2qN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="hcY-re-EGa"/>
+                <constraint firstItem="Flo-PB-a1m" firstAttribute="top" secondItem="O6j-aO-xcY" secondAttribute="top" id="jfD-Hg-92G"/>
+                <constraint firstAttribute="trailing" secondItem="Flo-PB-a1m" secondAttribute="trailing" constant="8" id="yV4-Wl-vGL"/>
+                <constraint firstAttribute="bottom" secondItem="uAC-0d-WWz" secondAttribute="bottom" id="z1D-q0-5Y0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="267" height="395"/>
+            <connections>
+                <outlet property="imgPoster" destination="uAC-0d-WWz" id="B7a-6b-em9"/>
+                <outlet property="movieNameLabel" destination="Flo-PB-a1m" id="aBm-6b-roS"/>
+                <outlet property="starRating" destination="Et0-hJ-2qN" id="GMQ-Qp-0Pg"/>
+            </connections>
+            <point key="canvasLocation" x="108.5" y="178.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="img_demoposter" width="184" height="274"/>
+    </resources>
+</document>

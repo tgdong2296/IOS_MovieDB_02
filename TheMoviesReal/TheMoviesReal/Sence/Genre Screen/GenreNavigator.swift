@@ -11,7 +11,7 @@ import UIKit
 
 protocol GenreNavigatorType {
     func toGenreScreen()
-    func toGenreDetailScreen(genreId: Int)
+    func toGenreDetailScreen(genre: Genre)
 }
 
 struct GenreNavigator: GenreNavigatorType {
@@ -24,6 +24,8 @@ struct GenreNavigator: GenreNavigatorType {
         navigationController.pushViewController(genreViewController, animated: true)
     }
     
-    func toGenreDetailScreen(genreId: Int) {
+    func toGenreDetailScreen(genre: Genre) {
+        let navigator = GenreDetailNavigator(navigationController: navigationController)
+        navigator.toGenreDetail(genre: genre)
     }
 }

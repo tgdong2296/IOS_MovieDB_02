@@ -1,0 +1,25 @@
+//
+//  GenreDetailNavigator.swift
+//  TheMoviesReal
+//
+//  Created by Trịnh Giang Đông on 7/27/18.
+//  Copyright © 2018 Hai. All rights reserved.
+//
+import UIKit
+
+protocol GenreDetailNavigatorType {
+    func toGenreDetail(genre: Genre)
+}
+
+struct GenreDetailNavigator: GenreDetailNavigatorType {
+    unowned let navigationController: UINavigationController
+    
+    func toGenreDetail(genre: Genre) {
+        let genreDetailViewController = GenreDetailViewController.instantiate()
+        genreDetailViewController.genre = genre
+        let genreDetailUseCase = GenreDetailUseCase(genre: genre)
+        let genreDetailViewModel = GenreDetailViewModel(navigator: self, useCase: genreDetailUseCase, genre: genre)
+        genreDetailViewController.bindViewModel(to: genreDetailViewModel)
+        navigationController.pushViewController(genreDetailViewController, animated: true)
+    }
+}

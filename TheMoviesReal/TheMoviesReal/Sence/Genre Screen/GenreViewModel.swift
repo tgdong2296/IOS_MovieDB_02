@@ -20,6 +20,7 @@ struct GenreViewModel: ViewModelType {
         let genreList: Driver<[Genre]>
         let error: Driver<Error>
         let indicator: Driver<Bool>
+        let selectedGenre: Driver<Void>
     }
     
     let navigator: GenreNavigatorType
@@ -35,10 +36,21 @@ struct GenreViewModel: ViewModelType {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
+        let selectedGenre = input.selectGenreTrigger
+            .withLatestFrom(genreList) { indexPath, genreList in
+                return (indexPath, genreList)
+            }.map{ (indexPath, genreList) in
+                return genreList[indexPath.row]
+            }.do(onNext: {genre in
+                self.navigator.toGenreDetailScreen(genre: genre)
+            })
+            .mapToVoid()
+        
         return Output(
             genreList: genreList,
             error: errorTracker.asDriver(),
-            indicator: activityIndicator.asDriver()
+            indicator: activityIndicator.asDriver(),
+            selectedGenre: selectedGenre
         )
     }
 }

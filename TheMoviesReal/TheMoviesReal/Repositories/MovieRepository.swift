@@ -13,6 +13,7 @@ import RxSwift
 protocol MovieRepository {
     func getMovieList(input: MovieListRequest) -> Observable<[Movie]>
     func getMovieDetail(input: MovieDetailRequest) -> Observable<Movie>
+    func getMovieByGenre(input: MovieByGenreRequest) -> Observable<[Movie]>
 }
 
 class MovieRepositoryImp: MovieRepository {
@@ -31,6 +32,12 @@ class MovieRepositoryImp: MovieRepository {
     func getMovieDetail(input: MovieDetailRequest) -> Observable<Movie> {
         return api.request(input: input).map { (response: Movie) -> Movie in
             return response
+        }
+    }
+    
+    func getMovieByGenre(input: MovieByGenreRequest) -> Observable<[Movie]> {
+        return api.request(input: input).map { (response: MovieByGenreResponse) -> [Movie] in
+            return response.movieList
         }
     }
 }
