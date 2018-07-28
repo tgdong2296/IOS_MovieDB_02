@@ -11,4 +11,5 @@ import UIKit
 struct Storyboards {
     static let main = UIStoryboard(name: "Main", bundle: nil)
     static let genre = UIStoryboard(name: "Genre", bundle: nil)
+    static let movieType = UIStoryboard(name: "MovieType", bundle: nil)
 }
