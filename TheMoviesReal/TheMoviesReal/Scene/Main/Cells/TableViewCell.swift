@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class TableViewCell: UITableViewCell, NibReusable {
+final class TableViewCell: UITableViewCell, NibReusable {
     static let reuseID = "TableViewCell"
     
     var collectionViewOffset: CGFloat {
@@ -20,6 +20,7 @@ class TableViewCell: UITableViewCell, NibReusable {
     @IBOutlet private weak var cellTitle: UILabel!
     @IBOutlet private weak var cellCollectionView: UICollectionView!
         
+    
     func updateCell(category: String) {
         cellTitle.text = category
     }

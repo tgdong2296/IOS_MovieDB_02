@@ -16,6 +16,10 @@
 		2739489E2106D8F100E13B25 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2739489C2106D8F100E13B25 /* HomeCollectionViewCell.swift */; };
 		2739489F2106D8F100E13B25 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2739489D2106D8F100E13B25 /* HomeCollectionViewCell.xib */; };
 		273948A12106E1A000E13B25 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273948A02106E1A000E13B25 /* UIViewExtension.swift */; };
+		278D2FFD2109A4A700DEF337 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2FFC2109A4A700DEF337 /* Constants.swift */; };
+		278D2FFF2109BE7B00DEF337 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2FFE2109BE7B00DEF337 /* MainViewModel.swift */; };
+		278D30012109BE8E00DEF337 /* MainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D30002109BE8E00DEF337 /* MainUseCase.swift */; };
+		278D30032109BEAF00DEF337 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D30022109BEAF00DEF337 /* MainNavigator.swift */; };
 		27960B6F2105DA4200740856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27960B6E2105DA4200740856 /* AppDelegate.swift */; };
 		27960B742105DA4200740856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27960B722105DA4200740856 /* Main.storyboard */; };
 		27960B772105DA4200740856 /* TheMoviesReal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27960B752105DA4200740856 /* TheMoviesReal.xcdatamodeld */; };
@@ -78,6 +82,10 @@
 		2739489C2106D8F100E13B25 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2739489D2106D8F100E13B25 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		273948A02106E1A000E13B25 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		278D2FFC2109A4A700DEF337 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		278D2FFE2109BE7B00DEF337 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		278D30002109BE8E00DEF337 /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUseCase.swift; sourceTree = "<group>"; };
+		278D30022109BEAF00DEF337 /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		27960B6B2105DA4200740856 /* TheMoviesReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMoviesReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27960B6E2105DA4200740856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27960B732105DA4200740856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,13 +156,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		273948A22107019500E13B25 /* Home */ = {
+		273948A22107019500E13B25 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				273948A4210705AE00E13B25 /* Cells */,
 				273948922106D54900E13B25 /* HomeViewController.swift */,
+				278D2FFE2109BE7B00DEF337 /* MainViewModel.swift */,
+				278D30002109BE8E00DEF337 /* MainUseCase.swift */,
+				278D30022109BEAF00DEF337 /* MainNavigator.swift */,
 			);
-			path = Home;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		273948A3210701B000E13B25 /* SideMenu */ = {
@@ -231,6 +242,7 @@
 		841118E12106174D008939E4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				278D2FFC2109A4A700DEF337 /* Constants.swift */,
 				841118E22106175F008939E4 /* URLs.swift */,
 				2739488E2106B98400E13B25 /* APIKey.swift */,
 			);
@@ -429,7 +441,7 @@
 				849A3FE621081CD2009D76EF /* Genre Screen */,
 				849A3FEC21081CD2009D76EF /* Storyboard */,
 				273948A3210701B000E13B25 /* SideMenu */,
-				273948A22107019500E13B25 /* Home */,
+				273948A22107019500E13B25 /* Main */,
 				8473B0412106C88D00F980D7 /* App */,
 			);
 			path = Scene;
@@ -627,7 +639,9 @@
 				2739488F2106B98400E13B25 /* APIKey.swift in Sources */,
 				273948932106D54900E13B25 /* HomeViewController.swift in Sources */,
 				27960B772105DA4200740856 /* TheMoviesReal.xcdatamodeld in Sources */,
+				278D2FFF2109BE7B00DEF337 /* MainViewModel.swift in Sources */,
 				84111903210618E3008939E4 /* BaseRequest.swift in Sources */,
+				278D2FFD2109A4A700DEF337 /* Constants.swift in Sources */,
 				84111905210618FC008939E4 /* MovieListRequest.swift in Sources */,
 				841118E32106175F008939E4 /* URLs.swift in Sources */,
 				8411190E2106197B008939E4 /* MovieRepository.swift in Sources */,
@@ -639,6 +653,7 @@
 				8411190B2106194F008939E4 /* CustomRequestAdapter.swift in Sources */,
 				8414C47F210AA985009CDE81 /* GenreDetailViewModel.swift in Sources */,
 				843CA6122109B288003FFB68 /* GenreDetailViewController.swift in Sources */,
+				278D30032109BEAF00DEF337 /* MainNavigator.swift in Sources */,
 				841118F321061829008939E4 /* APIService.swift in Sources */,
 				84FEBA6B21071706009D038E /* UIViewController+Rx.swift in Sources */,
 				84FEBA6D21071771009D038E /* UIViewController+.swift in Sources */,
@@ -666,6 +681,7 @@
 				273948962106D69200E13B25 /* TableViewCell.swift in Sources */,
 				843CA60B2109AEE3003FFB68 /* ViewModelLoadMore.swift in Sources */,
 				2739489E2106D8F100E13B25 /* HomeCollectionViewCell.swift in Sources */,
+				278D30012109BE8E00DEF337 /* MainUseCase.swift in Sources */,
 				849A3FF021081CD2009D76EF /* GenreViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
