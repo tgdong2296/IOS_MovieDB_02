@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OoW-1f-iWK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OoW-1f-iWK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Movie Type-->
         <scene sceneID="lXf-e9-4xm">
             <objects>
-                <viewController storyboardIdentifier="MovieTypeViewController" id="Z7D-Zo-5gb" customClass="MovieTypeViewController" customModule="TheMoviesReal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieTypeViewForMainController" id="Z7D-Zo-5gb" customClass="MovieTypeViewForMainController" customModule="TheMoviesReal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UWF-W5-N0i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movie Type" id="Kgf-CE-g5L"/>
                     <connections>
-                        <outlet property="collectionView" destination="rDB-Dq-JM1" id="fqm-vi-TWA"/>
+                        <outlet property="collectionView" destination="rDB-Dq-JM1" id="uVK-9S-85N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yw-CW-25c" userLabel="First Responder" sceneMemberID="firstResponder"/>

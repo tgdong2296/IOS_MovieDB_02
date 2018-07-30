@@ -1,8 +1,8 @@
 //
-//  MovieTypeViewController.swift
+//  MovieTypeViewForMainController.swift
 //  TheMoviesReal
 //
-//  Created by Trịnh Giang Đông on 7/28/18.
+//  Created by Hai on 8/1/18.
 //  Copyright © 2018 Hai. All rights reserved.
 //
 
@@ -12,29 +12,30 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-class MovieTypeViewController: UIViewController, BindableType {
+class MovieTypeViewForMainController: UIViewController, BindableType {
     private struct Constants {
         static let popular = "Popular Movies"
         static let nowPlaying = "Now Playing Movies"
         static let upComing = "Upcoming Movies"
         static let topRate = "Top Rate Movies"
     }
-    @IBOutlet weak var collectionView: LoadMoreCollectionView!
     
     private var options = Options()
     var viewModel: MovieTypeViewModel!
+
+    @IBOutlet weak var collectionView: LoadMoreCollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configView()
         setupData()
+        configView()
     }
     
     private func setupData() {
         var listType: MovieListType = .popular
         switch self.navigationItem.title {
         case Constants.popular?:
-            listType = .popular 
+            listType = .popular
             
         case Constants.nowPlaying?:
             listType = .nowPlaying
@@ -48,9 +49,6 @@ class MovieTypeViewController: UIViewController, BindableType {
         default:
             break
         }
-        let navigator = MovieTypeNavigator(navigationController: navigationController!)
-        viewModel = MovieTypeViewModel(navigator: navigator, useCase: MovieTypeUseCase(), listType: listType)
-        bindViewModel()
     }
     
     private func configView() {
@@ -102,7 +100,7 @@ class MovieTypeViewController: UIViewController, BindableType {
     }
 }
 
-extension MovieTypeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension MovieTypeViewForMainController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     fileprivate struct Options {
         var itemSpacing: CGFloat = 8
         var lineSpacing: CGFloat = 8
@@ -140,6 +138,6 @@ extension MovieTypeViewController: UICollectionViewDelegate, UICollectionViewDel
     }
 }
 
-extension MovieTypeViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.main
+extension MovieTypeViewForMainController: StoryboardSceneBased {
+    static var sceneStoryboard = Storyboards.movieType
 }

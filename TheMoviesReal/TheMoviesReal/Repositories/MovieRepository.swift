@@ -14,6 +14,7 @@ protocol MovieRepository {
     func getMovieList(input: MovieListRequest) -> Observable<[Movie]>
     func getMovieDetail(input: MovieDetailRequest) -> Observable<Movie>
     func getMovieByGenre(input: MovieByGenreRequest) -> Observable<[Movie]>
+    func getMovieListSearch(input: MovieSearchRequest) -> Observable<[Movie]>
 }
 
 class MovieRepositoryImp: MovieRepository {
@@ -21,6 +22,12 @@ class MovieRepositoryImp: MovieRepository {
     
     required init(api: APIService) {
         self.api = api
+    }
+    
+    func getMovieListSearch(input: MovieSearchRequest) -> Observable<[Movie]> {
+        return api.request(input: input).map { (response: MovieListResponse) -> [Movie] in
+                return response.movieList
+        }
     }
     
     func getMovieList(input: MovieListRequest) -> Observable<[Movie]> {

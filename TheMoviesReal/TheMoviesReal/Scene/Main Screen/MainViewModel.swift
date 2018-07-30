@@ -13,6 +13,7 @@ import RxSwift
 struct MainViewModel: ViewModelType {
     struct  Input {
         let loadTrigger: Driver<Void>
+        let cellButtonTrigger: Driver<Void>
     }
     
     struct Output {
