@@ -21,6 +21,13 @@ class GenreViewController: UIViewController, BindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+        setupData()
+    }
+    
+    private func setupData() {
+        let navigator = GenreNavigator(navigationController: navigationController!)
+        viewModel = GenreViewModel(navigator: navigator, useCase: GenreUseCase())
+        bindViewModel()
     }
     
     private func configView() {
@@ -63,5 +70,5 @@ extension GenreViewController: UICollectionViewDelegate {
 }
 
 extension GenreViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.genre
+    static var sceneStoryboard = Storyboards.main
 }
