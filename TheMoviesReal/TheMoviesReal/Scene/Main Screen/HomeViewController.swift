@@ -17,20 +17,12 @@ final class HomeViewController: UIViewController, BindableType {
     fileprivate var storedOffsets = [Int: CGFloat]()
     fileprivate var allMovie = [[Movie]]()
     fileprivate var movieListFake = [Movie]()
-    private let toMovieListSubject = PublishSubject<Void>()
+    private let toMovieListSubject = PublishSubject<MovieListType>()
+    private let toMovieDetailSubject = PublishSubject<Movie>()
     var viewModel: MainViewModel!
     
     @IBOutlet private weak var tableView: UITableView!
-    
-    @IBAction private func toSearchAction(_ sender: Any) {
-        let navigator = MainNavigator(navigationController: navigationController!)
-        navigator.toSearch()
-    }
-    
-    func toMovieListType(listType: MovieListType) {
-        let navigator = MainNavigator(navigationController: navigationController!)
-        navigator.toMovieTypeScreen(listType: listType)
-    }
+    @IBOutlet private weak var toSearchButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +49,9 @@ final class HomeViewController: UIViewController, BindableType {
     func bindViewModel() {
         let input = MainViewModel.Input(
             loadTrigger: Driver.just(()),
-            cellButtonTrigger: Driver.just(())
+            toMovieTypeTrigger: toMovieListSubject.asDriverOnErrorJustComplete(),
+            toSearchTrigger: toSearchButton.rx.tap.asDriver(),
+            toMovieDetailTrigger: toMovieDetailSubject.asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input)
@@ -93,6 +87,15 @@ final class HomeViewController: UIViewController, BindableType {
         output.indicator
             .drive(rx.isLoading)
             .disposed(by: rx.disposeBag)
+        output.toSearch
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.toMovieType
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.toMovieDetail
+            .drive()
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -123,9 +126,11 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TableViewCell.self)
-        cell.updateCell(category: Constant.homeCategories[indexPath.row])
+       let listType = Constant.homeCategories[indexPath.row]
+        cell.updateCell(category: listType)
         cell.toMovieListAction = { [weak self] in
-            self?.toMovieListSubject.onNext(())
+            guard let `self` = self else { return }
+            self.toMovieListSubject.onNext(listType)
         }
         return cell
     }
@@ -166,8 +171,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let row = collectionView.tag
         let movieList = allMovie[row]
         let movie = movieList[indexPath.row]
-        let navigator = MainNavigator(navigationController: navigationController!)
-        navigator.toMovieDetail(movie: movie)
+        self.toMovieDetailSubject.onNext(movie)
     }
 }
 

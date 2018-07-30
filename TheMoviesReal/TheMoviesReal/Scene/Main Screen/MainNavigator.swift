@@ -13,6 +13,7 @@ protocol MainNavigatorType {
     func toGenres()
     func toSearch()
     func toMovieDetail(movie: Movie)
+    func toMovieTypeScreen(listType: MovieListType)
 }
 
 struct MainNavigator: MainNavigatorType {

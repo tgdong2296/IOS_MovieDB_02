@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!--Search Movies-->
         <scene sceneID="mOU-Aq-oSI">
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="Wuy-Mh-ujT" customClass="SearchViewController" customModule="TheMoviesReal" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,12 +46,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFt-wc-lPx">
+                                <rect key="frame" x="124" y="355" width="126.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="sFt-wc-lPx" firstAttribute="centerX" secondItem="CR6-58-VBL" secondAttribute="centerX" id="2yA-1U-ICf"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="leading" secondItem="CR6-58-VBL" secondAttribute="leading" id="5S0-vv-3Wb"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="top" secondItem="CR6-58-VBL" secondAttribute="top" id="UXJ-Ee-bFu"/>
                             <constraint firstItem="CR6-58-VBL" firstAttribute="bottom" secondItem="anl-YC-Xnx" secondAttribute="bottom" id="ZMV-tG-w4W"/>
+                            <constraint firstItem="sFt-wc-lPx" firstAttribute="centerY" secondItem="CR6-58-VBL" secondAttribute="centerY" id="Zff-gZ-vON"/>
                             <constraint firstItem="anl-YC-Xnx" firstAttribute="leading" secondItem="CR6-58-VBL" secondAttribute="leading" id="adA-JA-wo6"/>
                             <constraint firstItem="CR6-58-VBL" firstAttribute="trailing" secondItem="anl-YC-Xnx" secondAttribute="trailing" id="cyE-pZ-v4N"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="trailing" secondItem="CR6-58-VBL" secondAttribute="trailing" id="dvU-YO-Bww"/>
@@ -59,9 +67,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CR6-58-VBL"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qxD-a8-LMD"/>
+                    <navigationItem key="navigationItem" title="Search Movies" id="qxD-a8-LMD"/>
                     <connections>
                         <outlet property="collectionView" destination="anl-YC-Xnx" id="KMs-ux-XWL"/>
+                        <outlet property="noResultLabel" destination="sFt-wc-lPx" id="Liq-Bd-KAJ"/>
                         <outlet property="searchBar" destination="2ie-s2-K81" id="UlX-ZT-XiA"/>
                     </connections>
                 </viewController>
@@ -77,6 +86,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1xl-XS-1Uo">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -10,6 +10,7 @@ import UIKit
 
 protocol MovieTypeNavigatorType {
     func toMovieTypeScreen(listType: MovieListType)
+    func toMovieDetail(movie: Movie)
 }
 
 struct MovieTypeNavigator: MovieTypeNavigatorType {
@@ -17,9 +18,15 @@ struct MovieTypeNavigator: MovieTypeNavigatorType {
     
     func toMovieTypeScreen(listType: MovieListType) {
         let viewController = MovieTypeViewForMainController.instantiate()
+        viewController.title = listType.rawValue
         let useCase = MovieTypeUseCase()
         let viewModel = MovieTypeViewModel(navigator: self, useCase: useCase, listType: listType)
         viewController.bindViewModel(to: viewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func toMovieDetail(movie: Movie) {
+        let navigator = MovieDetailNavigator(navigationController: navigationController)
+        navigator.toMovieDetail(movie: movie)
     }
 }
