@@ -325,30 +325,41 @@
             </objects>
             <point key="canvasLocation" x="2562" y="-340"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorite View Controller-->
         <scene sceneID="55G-3q-kJe">
             <objects>
-                <viewController id="OSi-VU-Pjh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteViewController" id="OSi-VU-Pjh" customClass="FavoriteViewController" customModule="TheMoviesReal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="20z-Ia-gQp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA9-jE-enZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v8L-dP-1iu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any favorite movie!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrS-Kt-JZG">
+                                <rect key="frame" x="20" y="324" width="335" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uA9-jE-enZ" firstAttribute="leading" secondItem="cd1-0k-kxg" secondAttribute="leading" id="0hO-LG-UJj"/>
-                            <constraint firstItem="uA9-jE-enZ" firstAttribute="top" secondItem="cd1-0k-kxg" secondAttribute="top" id="J1k-6R-Lmz"/>
-                            <constraint firstItem="cd1-0k-kxg" firstAttribute="bottom" secondItem="uA9-jE-enZ" secondAttribute="bottom" id="jvi-Tb-oma"/>
-                            <constraint firstItem="cd1-0k-kxg" firstAttribute="trailing" secondItem="uA9-jE-enZ" secondAttribute="trailing" id="nRQ-DH-7YG"/>
+                            <constraint firstItem="v8L-dP-1iu" firstAttribute="top" secondItem="cd1-0k-kxg" secondAttribute="top" id="9Yn-G2-aST"/>
+                            <constraint firstItem="cd1-0k-kxg" firstAttribute="trailing" secondItem="v8L-dP-1iu" secondAttribute="trailing" id="EQ4-sy-2Gv"/>
+                            <constraint firstItem="UrS-Kt-JZG" firstAttribute="centerY" secondItem="20z-Ia-gQp" secondAttribute="centerY" id="HWc-Je-6jx"/>
+                            <constraint firstItem="cd1-0k-kxg" firstAttribute="bottom" secondItem="v8L-dP-1iu" secondAttribute="bottom" id="NP4-EP-EAw"/>
+                            <constraint firstItem="v8L-dP-1iu" firstAttribute="leading" secondItem="cd1-0k-kxg" secondAttribute="leading" id="Oxw-sF-Sxf"/>
+                            <constraint firstItem="cd1-0k-kxg" firstAttribute="trailing" secondItem="UrS-Kt-JZG" secondAttribute="trailing" constant="20" id="TUm-Sn-hYA"/>
+                            <constraint firstItem="UrS-Kt-JZG" firstAttribute="leading" secondItem="cd1-0k-kxg" secondAttribute="leading" constant="20" id="bdf-4N-Qai"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cd1-0k-kxg"/>
                     </view>
+                    <connections>
+                        <outlet property="emptyMovieLabel" destination="UrS-Kt-JZG" id="AmN-Oc-hPf"/>
+                        <outlet property="tableView" destination="v8L-dP-1iu" id="elZ-P2-Wpd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Skc-Da-MER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

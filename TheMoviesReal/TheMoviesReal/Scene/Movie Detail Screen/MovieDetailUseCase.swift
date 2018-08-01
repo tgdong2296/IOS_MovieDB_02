@@ -15,6 +15,9 @@ protocol MovieDetailUseCaseType {
     func getCast(movieId id: Int) -> Observable<[Cast]>
     func getCrew(movieId id: Int) -> Observable<[Crew]>
     func getTrailer(movieId id: Int) -> Observable<String>
+    func checkAvailable(movie: Movie) -> Observable<Bool>
+    func addToFavorite(movie: Movie) -> Observable<DatabaseResultState>
+    func deleteFromFavorite(movie: Movie) -> Observable<DatabaseResultState>
 }
 
 struct MovieDetailUseCase: MovieDetailUseCaseType {
@@ -49,5 +52,20 @@ struct MovieDetailUseCase: MovieDetailUseCaseType {
             .map { trailers in
                 return trailers[0].key
             }
+    }
+    
+    func checkAvailable(movie: Movie) -> Observable<Bool> {
+        let databaseManager = DatabaseManager.sharedInstance()
+        return databaseManager.checkAvailable(movie:movie)
+    }
+    
+    func addToFavorite(movie: Movie) -> Observable<DatabaseResultState> {
+        let databaseManager = DatabaseManager.sharedInstance()
+        return databaseManager.insert(movie: movie)
+    }
+    
+    func deleteFromFavorite(movie: Movie) -> Observable<DatabaseResultState> {
+        let databaseManager = DatabaseManager.sharedInstance()
+        return databaseManager.delete(movie:movie)
     }
 }

@@ -30,6 +30,7 @@ class MovieDetailViewController: UIViewController, BindableType {
     
     private var options = Options()
     var viewModel: MovieDetailViewModel!
+    let favoriteButton = UIButton.init(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,8 @@ class MovieDetailViewController: UIViewController, BindableType {
     func bindViewModel() {
         let input = MovieDetailViewModel.Input(
             loadTrigger: Driver.just(()),
-            seeMoreTrigger: btnSeeMore.rx.tap.asDriver()
+            seeMoreTrigger: btnSeeMore.rx.tap.asDriver(),
+            favoriteTrigger: favoriteButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -80,6 +82,23 @@ class MovieDetailViewController: UIViewController, BindableType {
             })
             .disposed(by: rx.disposeBag)
         
+        output.favoriteState
+            .drive(onNext: { [unowned self] state in
+                self.changeRightBarButtonImage(image: state ? #imageLiteral(resourceName: "ic_like_100px") : #imageLiteral(resourceName: "ic_dislike_100px"))
+            })
+            .disposed(by: rx.disposeBag)
+        
+        output.favoriteAction
+            .drive(onNext: { [unowned self] result in
+                switch result {
+                case .insertSuccess:
+                    self.changeRightBarButtonImage(image: #imageLiteral(resourceName: "ic_like_100px"))
+                case .deleteSucess:
+                    self.changeRightBarButtonImage(image: #imageLiteral(resourceName: "ic_dislike_100px"))
+                }
+            })
+            .disposed(by: rx.disposeBag)
+        
         output.youtubeViewOutput
             .drive(youtubeView.rx.videoID)
             .disposed(by: rx.disposeBag)
@@ -94,6 +113,10 @@ class MovieDetailViewController: UIViewController, BindableType {
         
         output.movieStatus
             .drive(statusLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        output.genreDetail
+            .drive(genreLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
         output.moviePoster
@@ -135,6 +158,13 @@ class MovieDetailViewController: UIViewController, BindableType {
                 self.btnSeeMore.setTitle("See More >>", for: .normal)
             })
         }
+    }
+    
+    private func changeRightBarButtonImage(image: UIImage) {
+        favoriteButton.setImage(image, for: .normal)
+        favoriteButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
+        let barButton = UIBarButtonItem.init(customView: favoriteButton)
+        self.navigationItem.rightBarButtonItem = barButton
     }
 }
 

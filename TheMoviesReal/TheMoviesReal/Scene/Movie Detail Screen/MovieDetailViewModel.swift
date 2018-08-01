@@ -14,6 +14,7 @@ struct MovieDetailViewModel: ViewModelType {
     struct Input {
         let loadTrigger: Driver<Void>
         let seeMoreTrigger: Driver<Void>
+        let favoriteTrigger: Driver<Void>
     }
     
     struct Output {
@@ -29,6 +30,9 @@ struct MovieDetailViewModel: ViewModelType {
         let castList: Driver<[Cast]>
         let crewList: Driver<[Crew]>
         let overviewState: Driver<Bool>
+        let favoriteState: Driver<Bool>
+        let favoriteAction: Driver<DatabaseResultState>
+        let genreDetail: Driver<String>
     }
     
     let navigator: MovieDetailNavigatorType
@@ -45,6 +49,31 @@ struct MovieDetailViewModel: ViewModelType {
             .map { state -> Bool in
                 stateSeeMore.accept(!state)
                 return !state
+            }
+        
+        let favoriteState = input.loadTrigger
+            .flatMapLatest {_ in
+                return self.useCase.checkAvailable(movie: self.movie)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+        
+        let favoriteAction = input.favoriteTrigger
+            .flatMapLatest { _ in
+                return self.useCase.checkAvailable(movie: self.movie)
+                    .asDriverOnErrorJustComplete()
+            }
+            .flatMap { isAvailable -> Driver<DatabaseResultState> in
+                if isAvailable {
+                    return self.useCase.deleteFromFavorite(movie: self.movie)
+                        .trackError(errorTracker)
+                        .asDriverOnErrorJustComplete()
+                } else {
+                    return self.useCase.addToFavorite(movie: self.movie)
+                        .trackError(errorTracker)
+                        .asDriverOnErrorJustComplete()
+                }
             }
         
         let youtubeView = input.loadTrigger
@@ -109,6 +138,11 @@ struct MovieDetailViewModel: ViewModelType {
                 return movie.overview
             }
         
+        let genreDetail = detail
+            .map { movie in
+                return movie.getGenreString()
+            }
+        
         return Output(
             error: errorTracker.asDriver(),
             activityIndicator: activityIndicator.asDriver(),
@@ -121,7 +155,10 @@ struct MovieDetailViewModel: ViewModelType {
             movieOverview: movieOverview,
             castList: castList,
             crewList: crewList,
-            overviewState: overviewState.asDriver()
+            overviewState: overviewState.asDriver(),
+            favoriteState: favoriteState,
+            favoriteAction: favoriteAction,
+            genreDetail: genreDetail
         )
     }
 }
