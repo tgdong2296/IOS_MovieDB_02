@@ -57,7 +57,7 @@ struct GenreDetailViewModel: ViewModelType {
                 return movieList[indexPath.row]
             }
             .do(onNext: { movie in
-                //change to movie detail screen
+                self.navigator.toMovieDetail(movie: movie)
             })
             .mapToVoid()
         let isEmptyData = Driver.combineLatest(movieList, loading)

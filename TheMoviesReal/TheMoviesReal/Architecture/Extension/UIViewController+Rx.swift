@@ -29,4 +29,10 @@ extension Reactive where Base: UIViewController {
             }
         }
     }
+    
+    var screenTitle: Binder<String> {
+        return Binder(base) { viewController, screenTitle in
+            viewController.navigationItem.title = screenTitle
+        }
+    }
 }

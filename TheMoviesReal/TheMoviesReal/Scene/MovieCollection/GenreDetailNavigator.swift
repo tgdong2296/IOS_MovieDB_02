@@ -9,6 +9,7 @@ import UIKit
 
 protocol GenreDetailNavigatorType {
     func toGenreDetail(genre: Genre)
+    func toMovieDetail(movie: Movie)
 }
 
 struct GenreDetailNavigator: GenreDetailNavigatorType {
@@ -21,5 +22,10 @@ struct GenreDetailNavigator: GenreDetailNavigatorType {
         let genreDetailViewModel = GenreDetailViewModel(navigator: self, useCase: genreDetailUseCase, genre: genre)
         genreDetailViewController.bindViewModel(to: genreDetailViewModel)
         navigationController.pushViewController(genreDetailViewController, animated: true)
+    }
+    
+    func toMovieDetail(movie: Movie) {
+        let navigator = MovieDetailNavigator(navigationController: navigationController)
+        navigator.toMovieDetail(movie: movie)
     }
 }

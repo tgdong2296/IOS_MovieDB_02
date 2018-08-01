@@ -23,4 +23,5 @@ target 'TheMoviesReal' do
 	pod 'Cosmos' 
 	pod 'SideMenu'
 	pod 'MJRefresh'
+	pod 'youtube-ios-player-helper'
 end
