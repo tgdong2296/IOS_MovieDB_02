@@ -20,7 +20,7 @@ class Movie: BaseModel {
     var originalLanguage = ""
     var title = ""
     var backdropPath = ""
-    var popularity = ""
+    var popularity: Int = 0
     var voteCount = ""
     var video = ""
     var voteAverage: Float = 0.0
@@ -35,6 +35,14 @@ class Movie: BaseModel {
     
     required init?(map: Map) {
         mapping(map: map)
+    }
+    
+    init(id: Int, title: String, posterPath: String, voteAverage: Float, popularity: Int) {
+        self.id = id
+        self.title = title
+        self.posterPath = posterPath
+        self.voteAverage = voteAverage
+        self.popularity = popularity
     }
     
     func mapping(map: Map) {
@@ -60,5 +68,13 @@ class Movie: BaseModel {
         runtime <- map["runtime"]
         status <- map["status"]
         tagline <- map["tagline"]
+    }
+    
+    func getGenreString() -> String {
+        var genreTemp = [String]()
+        for genre in genres {
+            genreTemp.append(genre.name)
+        }
+        return genreTemp.joined(separator: ", ")
     }
 }
