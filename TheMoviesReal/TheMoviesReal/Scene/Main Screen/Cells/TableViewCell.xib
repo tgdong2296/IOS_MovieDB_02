@@ -42,6 +42,9 @@
                         <state key="normal" title="More &gt;">
                             <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="toMovieListButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QtG-fk-JMa"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,6 +66,7 @@
             <connections>
                 <outlet property="cellCollectionView" destination="289-N1-D49" id="axT-Ht-oBw"/>
                 <outlet property="cellTitle" destination="AlL-HU-e1f" id="JE3-SK-kGm"/>
+                <outlet property="toMovieListTypeButton" destination="VG0-R0-KhS" id="BSg-RT-ELl"/>
             </connections>
             <point key="canvasLocation" x="-395" y="72"/>
         </tableViewCell>

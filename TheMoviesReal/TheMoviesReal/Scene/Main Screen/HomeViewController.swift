@@ -17,9 +17,20 @@ final class HomeViewController: UIViewController, BindableType {
     fileprivate var storedOffsets = [Int: CGFloat]()
     fileprivate var allMovie = [[Movie]]()
     fileprivate var movieListFake = [Movie]()
+    private let toMovieListSubject = PublishSubject<Void>()
     var viewModel: MainViewModel!
     
     @IBOutlet private weak var tableView: UITableView!
+    
+    @IBAction private func toSearchAction(_ sender: Any) {
+        let navigator = MainNavigator(navigationController: navigationController!)
+        navigator.toSearch()
+    }
+    
+    func toMovieListType(listType: MovieListType) {
+        let navigator = MainNavigator(navigationController: navigationController!)
+        navigator.toMovieTypeScreen(listType: listType)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +56,8 @@ final class HomeViewController: UIViewController, BindableType {
     
     func bindViewModel() {
         let input = MainViewModel.Input(
-            loadTrigger: Driver.just(())
+            loadTrigger: Driver.just(()),
+            cellButtonTrigger: Driver.just(())
         )
         
         let output = viewModel.transform(input)
@@ -112,6 +124,9 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: TableViewCell.self)
         cell.updateCell(category: Constant.homeCategories[indexPath.row])
+        cell.toMovieListAction = { [weak self] in
+            self?.toMovieListSubject.onNext(())
+        }
         return cell
     }
 }
@@ -148,6 +163,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = collectionView.tag
+        let movieList = allMovie[row]
+        let movie = movieList[indexPath.row]
+        let navigator = MainNavigator(navigationController: navigationController!)
+        navigator.toMovieDetail(movie: movie)
     }
 }
 

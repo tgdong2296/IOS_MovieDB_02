@@ -1,56 +1,29 @@
 //
-//  MovieTypeViewController.swift
+//  SearchViewController.swift
 //  TheMoviesReal
 //
-//  Created by Trịnh Giang Đông on 7/28/18.
+//  Created by Hai on 7/29/18.
 //  Copyright © 2018 Hai. All rights reserved.
 //
 
 import UIKit
 import Reusable
-import RxCocoa
 import RxSwift
+import RxCocoa
+import MBProgressHUD
 import NSObject_Rx
 
-class MovieTypeViewController: UIViewController, BindableType {
-    private struct Constants {
-        static let popular = "Popular Movies"
-        static let nowPlaying = "Now Playing Movies"
-        static let upComing = "Upcoming Movies"
-        static let topRate = "Top Rate Movies"
-    }
-    @IBOutlet weak var collectionView: LoadMoreCollectionView!
+final class SearchViewController: UIViewController, BindableType {
+
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var collectionView: LoadMoreCollectionView!
     
     private var options = Options()
-    var viewModel: MovieTypeViewModel!
+    var viewModel: SearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
-        setupData()
-    }
-    
-    private func setupData() {
-        var listType: MovieListType = .popular
-        switch self.navigationItem.title {
-        case Constants.popular?:
-            listType = .popular 
-            
-        case Constants.nowPlaying?:
-            listType = .nowPlaying
-            
-        case Constants.topRate?:
-            listType = .topRated
-            
-        case Constants.upComing?:
-            listType = .upComing
-            
-        default:
-            break
-        }
-        let navigator = MovieTypeNavigator(navigationController: navigationController!)
-        viewModel = MovieTypeViewModel(navigator: navigator, useCase: MovieTypeUseCase(), listType: listType)
-        bindViewModel()
     }
     
     private func configView() {
@@ -62,11 +35,15 @@ class MovieTypeViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
-        let input = MovieTypeViewModel.Input(
+        let input = SearchViewModel.Input(
+            queryTrigger: searchBar.rx.text.orEmpty.asDriver()
+                .distinctUntilChanged()
+                .filter { !$0.isEmpty }
+                .throttle(2),
             loadTrigger: Driver.just(()),
             reloadTrigger: collectionView.refreshTrigger,
-            loadMoreTriger: collectionView.loadMoreTrigger,
-            selectedMovieTrigger: collectionView.rx.itemSelected.asDriver()
+            loadMoreTrigger: collectionView.loadMoreTrigger,
+            selectMovieTrigger: collectionView.rx.itemSelected.asDriver()
         )
         let output = viewModel.transform(input)
         
@@ -99,10 +76,15 @@ class MovieTypeViewController: UIViewController, BindableType {
         output.isEmptyData
             .drive()
             .disposed(by: rx.disposeBag)
+
     }
 }
 
-extension MovieTypeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+    
     fileprivate struct Options {
         var itemSpacing: CGFloat = 8
         var lineSpacing: CGFloat = 8
@@ -140,6 +122,7 @@ extension MovieTypeViewController: UICollectionViewDelegate, UICollectionViewDel
     }
 }
 
-extension MovieTypeViewController: StoryboardSceneBased {
-    static var sceneStoryboard = Storyboards.main
+// MARK: - Navigation
+extension SearchViewController: StoryboardSceneBased {
+    static var sceneStoryboard = Storyboards.search
 }

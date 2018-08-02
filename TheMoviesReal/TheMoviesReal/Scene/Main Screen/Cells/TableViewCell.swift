@@ -12,6 +12,7 @@ import Reusable
 final class TableViewCell: UITableViewCell, NibReusable {
     static let reuseID = "TableViewCell"
     
+    var toMovieListAction: (() -> Void)?
     var collectionViewOffset: CGFloat {
         set { cellCollectionView.contentOffset.x = newValue }
         get { return cellCollectionView.contentOffset.x }
@@ -19,10 +20,14 @@ final class TableViewCell: UITableViewCell, NibReusable {
     
     @IBOutlet private weak var cellTitle: UILabel!
     @IBOutlet private weak var cellCollectionView: UICollectionView!
-        
+    @IBOutlet weak var toMovieListTypeButton: UIButton!
     
-    func updateCell(category: String) {
-        cellTitle.text = category
+    @IBAction func toMovieListButtonAction(_ sender: Any) {
+        toMovieListAction?()
+    }
+    
+    func updateCell(category: MovieListType) {
+        cellTitle.text = category.rawValue
     }
     
     override func awakeFromNib() {

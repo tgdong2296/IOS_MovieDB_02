@@ -30,4 +30,6 @@ struct URLs {
     static let APICreditURL = APIBaseUrl + "/movie/"
     
     static let APITrailerURL = APIBaseUrl + "/movie/"
+
+    static let APIMovieSearch = APIBaseUrl + "/search/movie"
 }

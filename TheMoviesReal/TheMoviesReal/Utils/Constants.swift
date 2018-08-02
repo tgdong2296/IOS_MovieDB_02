@@ -14,5 +14,5 @@ struct Constant {
     static let homeCollectionViewCellHeight = 170
     static let limit = 10
     static let homeMinimumLineSpacing = 0
-    static let homeCategories = ["Popular", "Now Playing", "Upcoming", "Top Rate"]
+    static let homeCategories: [MovieListType] = [.popular, .nowPlaying, .upComing, .topRated]
 }

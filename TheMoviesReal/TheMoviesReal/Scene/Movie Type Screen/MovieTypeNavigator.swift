@@ -16,7 +16,7 @@ struct MovieTypeNavigator: MovieTypeNavigatorType {
     unowned let navigationController: UINavigationController
     
     func toMovieTypeScreen(listType: MovieListType) {
-        let viewController = MovieTypeViewController.instantiate()
+        let viewController = MovieTypeViewForMainController.instantiate()
         let useCase = MovieTypeUseCase()
         let viewModel = MovieTypeViewModel(navigator: self, useCase: useCase, listType: listType)
         viewController.bindViewModel(to: viewModel)
