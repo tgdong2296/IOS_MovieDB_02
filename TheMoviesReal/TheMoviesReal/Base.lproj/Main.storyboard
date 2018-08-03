@@ -49,6 +49,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="i0o-yt-XXj" id="X9r-No-RTR"/>
+                        <outlet property="toSearchButton" destination="2rN-Vf-C3X" id="Yv6-kt-jGm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

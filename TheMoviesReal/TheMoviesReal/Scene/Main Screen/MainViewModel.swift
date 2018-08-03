@@ -13,7 +13,9 @@ import RxSwift
 struct MainViewModel: ViewModelType {
     struct  Input {
         let loadTrigger: Driver<Void>
-        let cellButtonTrigger: Driver<Void>
+        let toMovieTypeTrigger: Driver<MovieListType>
+        let toSearchTrigger: Driver<Void>
+        let toMovieDetailTrigger: Driver<Movie>
     }
     
     struct Output {
@@ -23,6 +25,9 @@ struct MainViewModel: ViewModelType {
         let movieListTopRated: Driver<[Movie]>
         let error: Driver<Error>
         let indicator: Driver<Bool>
+        let toSearch: Driver<Void>
+        let toMovieType: Driver<Void>
+        let toMovieDetail: Driver<Void>
     }
     
     let navigator: MainNavigatorType
@@ -59,13 +64,28 @@ struct MainViewModel: ViewModelType {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
         }
+        
+        let toSearchAction = input.toSearchTrigger
+            .do(onNext: { _ in
+                self.navigator.toSearch()
+            })
+        
+        let toMovieType = input.toMovieTypeTrigger
+            .map { self.navigator.toMovieTypeScreen(listType: $0)}
+        
+        let toMovieDetail = input.toMovieDetailTrigger
+            .map { self.navigator.toMovieDetail(movie: $0)}
+        
         return Output(
             movieListPopular: movieListPopular,
             movieListNowPlaying: movieListNowPlaying,
             movieListUpcoming: movieListUpcoming,
             movieListTopRated: movieListTopRated,
             error: errortracker.asDriver(),
-            indicator: activityIndicator.asDriver()
+            indicator: activityIndicator.asDriver(),
+            toSearch: toSearchAction,
+            toMovieType: toMovieType,
+            toMovieDetail: toMovieDetail
         )
     }
 }

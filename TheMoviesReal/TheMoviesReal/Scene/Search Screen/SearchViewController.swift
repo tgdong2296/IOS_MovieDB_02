@@ -17,7 +17,7 @@ final class SearchViewController: UIViewController, BindableType {
 
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var collectionView: LoadMoreCollectionView!
-    
+    @IBOutlet private weak var noResultLabel: UILabel!
     private var options = Options()
     var viewModel: SearchViewModel!
     
@@ -74,7 +74,9 @@ final class SearchViewController: UIViewController, BindableType {
             .drive()
             .disposed(by: rx.disposeBag)
         output.isEmptyData
-            .drive()
+            .drive(onNext: { [unowned self] isEmpty in
+                self.noResultLabel.isHidden = !isEmpty
+            })
             .disposed(by: rx.disposeBag)
 
     }

@@ -20,10 +20,10 @@ final class TableViewCell: UITableViewCell, NibReusable {
     
     @IBOutlet private weak var cellTitle: UILabel!
     @IBOutlet private weak var cellCollectionView: UICollectionView!
-    @IBOutlet weak var toMovieListTypeButton: UIButton!
+    @IBOutlet private weak var toMovieListTypeButton: UIButton!
     
     @IBAction func toMovieListButtonAction(_ sender: Any) {
-        toMovieListAction?()
+        toMovieListAction?() 
     }
     
     func updateCell(category: MovieListType) {

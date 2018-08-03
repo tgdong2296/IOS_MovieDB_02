@@ -64,6 +64,7 @@ struct MovieTypeViewModel: ViewModelType {
                 return movieList[indexPath.row]
             }
             .do(onNext: { movie in
+                self.navigator.toMovieDetail(movie: movie)
             })
             .mapToVoid()
         
