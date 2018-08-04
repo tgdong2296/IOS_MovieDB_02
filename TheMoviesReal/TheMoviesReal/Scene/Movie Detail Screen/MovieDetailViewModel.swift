@@ -107,6 +107,11 @@ struct MovieDetailViewModel: ViewModelType {
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
             }
+            .do(onNext: { movie in
+                self.movie.posterPath = movie.posterPath
+                self.movie.popularity = movie.popularity
+                self.movie.voteAverage = movie.voteAverage
+            })
         
         let movieName = input.loadTrigger
             .map { movie in

@@ -15,6 +15,11 @@ import NSObject_Rx
 import youtube_ios_player_helper
 
 class MovieDetailViewController: UIViewController, BindableType {
+    private struct Constants {
+        static let overviewEmpty = "This movie doesn't have overview!"
+        static let addSuccess = "Added to Favorite!"
+        static let deleteSuccess = "Deleted from Favorite!"
+    }
     @IBOutlet private weak var imgPoster: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var startRatingView: CosmosView!
@@ -48,6 +53,10 @@ class MovieDetailViewController: UIViewController, BindableType {
         creditCollectionView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+        imgPoster.dropShadow(width: imgPoster.frame.width, height: imgPoster.frame.height)
+        youtubeView.isHidden = true
+        youtubeView.dropShadow(width: youtubeView.frame.width, height: youtubeView.frame.height)
+        self.navigationController?.navigationItem.backBarButtonItem?.title = "Back"
     }
     
     func bindViewModel() {
@@ -93,8 +102,10 @@ class MovieDetailViewController: UIViewController, BindableType {
                 switch result {
                 case .insertSuccess:
                     self.changeRightBarButtonImage(image: #imageLiteral(resourceName: "ic_like_100px"))
+                    self.showToast(message: Constants.addSuccess)
                 case .deleteSucess:
                     self.changeRightBarButtonImage(image: #imageLiteral(resourceName: "ic_dislike_100px"))
+                    self.showToast(message: Constants.deleteSuccess)
                 }
             })
             .disposed(by: rx.disposeBag)
@@ -132,7 +143,10 @@ class MovieDetailViewController: UIViewController, BindableType {
             .disposed(by: rx.disposeBag)
         
         output.movieOverview
-            .drive(overviewLabel.rx.text)
+            .drive(onNext: { [unowned self] overview in
+                self.overviewLabel.text = overview.isEmpty ? Constants.overviewEmpty : overview
+                self.btnSeeMore.isHidden = overview.isEmpty
+            })
             .disposed(by: rx.disposeBag)
         
         output.error
@@ -150,7 +164,7 @@ class MovieDetailViewController: UIViewController, BindableType {
                 let width = UIScreen.main.bounds.width - 16
                 let height = self.overviewLabel?.text?.heightWithConstrainedWidth(width: width) ?? 0
                 self.overviewHeightConstraint?.constant = height + 10
-                self.btnSeeMore.setTitle("<< Hide", for: .normal)
+                self.btnSeeMore.setTitle("<< See Less", for: .normal)
             })
         } else {
             UIView.animate(withDuration: 4, animations: {

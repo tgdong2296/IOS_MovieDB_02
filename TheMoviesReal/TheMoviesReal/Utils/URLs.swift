@@ -32,4 +32,6 @@ struct URLs {
     static let APITrailerURL = APIBaseUrl + "/movie/"
 
     static let APIMovieSearch = APIBaseUrl + "/search/movie"
+    
+    static var HomePageURL = "https://www.themoviedb.org"
 }

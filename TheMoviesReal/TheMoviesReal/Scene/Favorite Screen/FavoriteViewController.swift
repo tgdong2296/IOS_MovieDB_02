@@ -17,9 +17,12 @@ class FavoriteViewController: UIViewController, BindableType {
     private struct Constants {
         static let screenTitle = "Favorite Movie"
         static let deleteAction = "Delete"
+        static let deleteSuccess = "Deleted from Favorite!"
     }
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyMovieLabel: UILabel!
+    
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyMovieLabel: UILabel!
+    @IBOutlet private weak var editButton: UIBarButtonItem!
     
     private let loadDataTrigger = PublishSubject<Void>()
     private let deleteTrigger = PublishSubject<IndexPath>()
@@ -59,7 +62,8 @@ class FavoriteViewController: UIViewController, BindableType {
         let input = FavoriteViewModel.Input(
             loadTrigger: loadDataTrigger.asDriverOnErrorJustComplete(),
             selectItemTrigger: tableView.rx.itemSelected.asDriver(),
-            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete()
+            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
+            editTrigger: editButton.rx.tap.asDriver()
         )
         let output = viewModel.transform(input)
         
@@ -81,6 +85,15 @@ class FavoriteViewController: UIViewController, BindableType {
         output.deletedMovie
             .drive(onNext: { [unowned self] _ in
                 self.loadData()
+                self.showToast(message: Constants.deleteSuccess)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        output.editAction
+            .drive(onNext: { [unowned self] _ in
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.tableView.isEditing = !self.tableView.isEditing
+                })
             })
             .disposed(by: rx.disposeBag)
         

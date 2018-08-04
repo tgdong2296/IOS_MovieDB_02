@@ -24,4 +24,7 @@ target 'TheMoviesReal' do
 	pod 'SideMenu'
 	pod 'MJRefresh'
 	pod 'youtube-ios-player-helper'
+	pod 'iCarousel'
+	pod 'hpple'
+	pod 'Then'
 end

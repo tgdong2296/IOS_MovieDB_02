@@ -16,12 +16,14 @@ struct FavoriteViewModel: ViewModelType {
         let loadTrigger: Driver<Void>
         let selectItemTrigger: Driver<IndexPath>
         let deleteTrigger: Driver<IndexPath>
+        let editTrigger: Driver<Void>
     }
     
     struct Output {
         let error: Driver<Error>
         let indicator: Driver<Bool>
         let favoriteList: Driver<[Movie]>
+        let editAction: Driver<Void>
         let selectedMovie: Driver<Void>
         let deletedMovie: Driver<Void>
         let isEmpty: Driver<Bool>
@@ -38,7 +40,6 @@ struct FavoriteViewModel: ViewModelType {
             .flatMapLatest {
                 return self.useCase.getAllMovie()
                     .trackError(errorTracker)
-                    .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
         
@@ -56,10 +57,11 @@ struct FavoriteViewModel: ViewModelType {
         
         let deletedMovie = input.deleteTrigger
             .withLatestFrom(movieList) { indexPath, movieList in
-                return (indexPath, movieList)
-            }
-            .map { indexPath, movieList in
                 return movieList[indexPath.row]
+            }
+            .flatMapLatest { movie in
+                return self.navigator.confirmDelete(movie: movie)
+                    .map { movie }
             }
             .flatMapLatest { movie in
                 return self.useCase.deleteMovie(movie: movie)
@@ -70,6 +72,8 @@ struct FavoriteViewModel: ViewModelType {
                 result == .deleteSucess
             }
             .mapToVoid()
+        
+        let editAction = input.editTrigger
         
         let isEmptyData = Driver.combineLatest(movieList, activityIndicator.asDriver())
             .filter { element in
@@ -83,6 +87,7 @@ struct FavoriteViewModel: ViewModelType {
             error: errorTracker.asDriver(),
             indicator: activityIndicator.asDriver(),
             favoriteList: movieList,
+            editAction: editAction,
             selectedMovie: selectedMovie,
             deletedMovie: deletedMovie,
             isEmpty: isEmptyData
