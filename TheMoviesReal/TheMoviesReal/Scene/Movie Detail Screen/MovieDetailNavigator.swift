@@ -12,6 +12,7 @@ import Foundation
 protocol MovieDetailNavigatorType {
     func toMovieDetail(movie: Movie)
     func toReviewDetail(movie: Movie)
+    func toPerson(personId: Int)
 }
 
 struct MovieDetailNavigator: MovieDetailNavigatorType {
@@ -28,5 +29,10 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
     func toReviewDetail(movie: Movie) {
         let navigator = ReviewNavigator(navigationController: navigationController)
         navigator.toReviewDetail(movie: movie)
+    }
+	
+    func toPerson(personId: Int) {
+        let navigator = PersonNavigator(navigationController: navigationController)
+        navigator.toPerson(personId: personId)
     }
 }

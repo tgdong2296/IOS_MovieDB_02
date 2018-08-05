@@ -16,6 +16,8 @@ struct MovieDetailViewModel: ViewModelType {
         let seeMoreTrigger: Driver<Void>
         let favoriteTrigger: Driver<Void>
         let reviewDetailTrigger: Driver<Void>
+        let toCastTrigger: Driver<IndexPath>
+        let toCrewTrigger: Driver<IndexPath>
     }
     
     struct Output {
@@ -39,6 +41,8 @@ struct MovieDetailViewModel: ViewModelType {
         let reviewRate: Driver<String>
         let voteCount: Driver<String>
         let reviewDetailClicked: Driver<Void>
+        let toCast: Driver<Void>
+        let toCrew: Driver<Void>
     }
     
     let navigator: MovieDetailNavigatorType
@@ -98,6 +102,18 @@ struct MovieDetailViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
             }
         
+        let toCast = input.toCastTrigger
+            .withLatestFrom(castList) { indexPath, castList in
+                return (indexPath, castList)
+            }
+            .map { (indexPath, castList) in
+                return castList[indexPath.row]
+            }
+            .do(onNext: { cast in
+                self.navigator.toPerson(personId: cast.id)
+            })
+            .mapToVoid()
+        
         let crewList = input.loadTrigger
             .flatMapLatest { _ in
                 return self.useCase.getCrew(movieId: self.movie.id)
@@ -105,6 +121,18 @@ struct MovieDetailViewModel: ViewModelType {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
+        
+        let toCrew = input.toCrewTrigger
+            .withLatestFrom(crewList) { indexPath, crewList in
+                return (indexPath, crewList)
+            }
+            .map { (indexPath, crewList) in
+                return crewList[indexPath.row]
+            }
+            .do(onNext: { crew in
+                self.navigator.toPerson(personId: crew.id)
+            })
+            .mapToVoid()
         
         let detail = input.loadTrigger
             .flatMapLatest { _ in
@@ -177,7 +205,7 @@ struct MovieDetailViewModel: ViewModelType {
         let reviewRate = detail
             .map { movie in
                 return "\(movie.voteAverage)"
-        }
+            }
         
         let voteCount = detail
             .map { movie in
@@ -210,7 +238,9 @@ struct MovieDetailViewModel: ViewModelType {
             firstReviewContent: firstReviewContent,
             reviewRate: reviewRate,
             voteCount: voteCount,
-            reviewDetailClicked: reviewButtonClicked
+            reviewDetailClicked: reviewButtonClicked,
+            toCast: toCast,
+            toCrew: toCrew
         )
     }
 }
