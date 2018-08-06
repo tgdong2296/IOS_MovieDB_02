@@ -37,6 +37,12 @@ class Movie: BaseModel {
         mapping(map: map)
     }
     
+    init(id: Int, title: String, backdropPath: String) {
+        self.id = id
+        self.title = title
+        self.backdropPath = backdropPath
+    }
+    
     init(id: Int, title: String, posterPath: String, voteAverage: Float, popularity: Int) {
         self.id = id
         self.title = title

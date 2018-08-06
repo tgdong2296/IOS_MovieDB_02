@@ -25,14 +25,13 @@ extension UIView {
         layer.insertSublayer(gradient, at: 0)
     }
     
-    func dropShadow(padding: CGFloat) {
+    func dropShadow(width: CGFloat, height: CGFloat) {
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         layer.shadowRadius = 3.0
         layer.shadowOpacity = 1
         layer.masksToBounds = false
-        let screenSize = UIScreen.main.bounds
-        let viewBound = CGRect(x: 0, y: 0, width: screenSize.width - padding, height: self.bounds.height)
+        let viewBound = CGRect(x: 0, y: 0, width: width, height: height)
         layer.shadowPath = UIBezierPath(roundedRect: viewBound, cornerRadius: self.layer.cornerRadius).cgPath
     }
 }

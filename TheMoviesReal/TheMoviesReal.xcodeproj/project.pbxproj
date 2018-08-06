@@ -68,6 +68,7 @@
 		844C5260210C61060025252B /* MovieTypeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C525F210C61060025252B /* MovieTypeNavigator.swift */; };
 		84525E602112A47D00C8AECB /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84525E5E2112A47D00C8AECB /* FavoriteCell.swift */; };
 		84525E612112A47D00C8AECB /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84525E5F2112A47D00C8AECB /* FavoriteCell.xib */; };
+		8460D4952115590900792011 /* BannerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460D4942115590900792011 /* BannerRepository.swift */; };
 		846D023F210FF8530047FC46 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D023E210FF8530047FC46 /* UIImageView+Rx.swift */; };
 		846D024121100C320047FC46 /* MovieCreditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D024021100C320047FC46 /* MovieCreditRequest.swift */; };
 		846D024321100C7E0047FC46 /* MovieCreditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D024221100C7E0047FC46 /* MovieCreditResponse.swift */; };
@@ -175,6 +176,7 @@
 		844C525F210C61060025252B /* MovieTypeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTypeNavigator.swift; sourceTree = "<group>"; };
 		84525E5E2112A47D00C8AECB /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		84525E5F2112A47D00C8AECB /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
+		8460D4942115590900792011 /* BannerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerRepository.swift; sourceTree = "<group>"; };
 		846D023E210FF8530047FC46 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
 		846D024021100C320047FC46 /* MovieCreditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditRequest.swift; sourceTree = "<group>"; };
 		846D024221100C7E0047FC46 /* MovieCreditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditResponse.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				8411190F21061991008939E4 /* GenreRepository.swift */,
 				846D0248211010330047FC46 /* CreditRepository.swift */,
 				846D025021103A3D0047FC46 /* TrailerRepository.swift */,
+				8460D4942115590900792011 /* BannerRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -766,6 +769,9 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/hpple/hpple.framework",
+				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -782,6 +788,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hpple.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -868,6 +877,7 @@
 				841118ED210617CB008939E4 /* Genre.swift in Sources */,
 				843CA6072109AD99003FFB68 /* RefreshAutoFooter.swift in Sources */,
 				843CA6172109B36D003FFB68 /* MovieCollectionCell.swift in Sources */,
+				8460D4952115590900792011 /* BannerRepository.swift in Sources */,
 				846D024B211034AE0047FC46 /* Trailer.swift in Sources */,
 				2771C852210EF23000F2C000 /* MovieSearchRequest.swift in Sources */,
 				8414C485210AB7A4009CDE81 /* MovieByGenreRequest.swift in Sources */,

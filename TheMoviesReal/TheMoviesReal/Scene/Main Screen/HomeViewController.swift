@@ -12,22 +12,43 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 import NSObject_Rx
+import iCarousel
+import Then
 
 final class HomeViewController: UIViewController, BindableType {
+    private struct Constants {
+        static let bannerWidth = UIScreen.main.bounds.width - 60
+        static let bannerHeight = (UIScreen.main.bounds.width - 60) / 2
+        static let labelWidth = UIScreen.main.bounds.width - 60
+        static let labelHeight = (UIScreen.main.bounds.width - 60) / 8
+    }
+    
     fileprivate var storedOffsets = [Int: CGFloat]()
     fileprivate var allMovie = [[Movie]]()
     fileprivate var movieListFake = [Movie]()
     private let toMovieListSubject = PublishSubject<MovieListType>()
     private let toMovieDetailSubject = PublishSubject<Movie>()
+    private let bannerSelectTrigger = PublishSubject<Int>()
+    fileprivate var carouseViewOffset: CGFloat = 0
+    fileprivate var banners = [Movie]()
+    fileprivate var timer: Timer?
     var viewModel: MainViewModel!
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var toSearchButton: UIBarButtonItem!
+    @IBOutlet private weak var carouselView: iCarousel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavigationBar()
+        configview()
+    }
+    
+    private func configview() {
+        carouselView.type = .rotary
+        carouselView.isPagingEnabled = true
+        startTimer()
     }
     
     private func setupNavigationBar() {
@@ -51,7 +72,8 @@ final class HomeViewController: UIViewController, BindableType {
             loadTrigger: Driver.just(()),
             toMovieTypeTrigger: toMovieListSubject.asDriverOnErrorJustComplete(),
             toSearchTrigger: toSearchButton.rx.tap.asDriver(),
-            toMovieDetailTrigger: toMovieDetailSubject.asDriverOnErrorJustComplete()
+            toMovieDetailTrigger: toMovieDetailSubject.asDriverOnErrorJustComplete(),
+            bannerSelectTrigger: bannerSelectTrigger.asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input)
@@ -81,6 +103,18 @@ final class HomeViewController: UIViewController, BindableType {
             print(self.allMovie.count)
         }).disposed(by: rx.disposeBag)
         
+        output.bannerList
+            .drive(onNext: { [weak self] banners in
+                guard let `self` = self else { return }
+                self.banners = banners
+                self.carouselView.reloadData()
+            })
+            .disposed(by: rx.disposeBag)
+        
+        output.bannerSelected
+            .drive()
+            .disposed(by: rx.disposeBag)
+        
         output.error
             .drive(rx.error)
             .disposed(by: rx.disposeBag)
@@ -96,6 +130,84 @@ final class HomeViewController: UIViewController, BindableType {
         output.toMovieDetail
             .drive()
             .disposed(by: rx.disposeBag)
+    }
+}
+
+// MARK: - iCarouse Library
+extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self,
+                                     selector: #selector(autoScroll), userInfo: nil, repeats: true)
+    }
+    
+    private func pauseTimer() {
+        timer?.invalidate()
+    }
+    
+    @objc private func autoScroll() {
+        UIView.animate(withDuration: 1, animations: {
+            self.carouseViewOffset = self.carouseViewOffset == CGFloat(self.banners.count - 1)
+                ? 0 : self.carouseViewOffset + 1
+            self.carouselView.scrollOffset = self.carouseViewOffset
+        })
+    }
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return banners.count
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let itemView = UIImageView().then {
+            $0.frame = CGRect(x: 0, y: 0, width: Constants.bannerWidth, height: Constants.bannerHeight)
+            $0.contentMode = .center
+        }
+        
+        let imageContentView = UIImageView().then {
+            $0.frame = itemView.bounds
+            $0.backgroundColor = .clear
+            $0.dropShadow(width: Constants.bannerWidth, height: Constants.bannerHeight)
+        }
+        
+        let blackView = UIView().then {
+            $0.frame = CGRect(x: 0, y: itemView.bounds.height - Constants.labelHeight,
+                              width: Constants.labelWidth, height: Constants.labelHeight)
+            $0.backgroundColor = .black
+            $0.alpha = 0.8
+        }
+        
+        let nameLabel = UILabel().then {
+            $0.frame = CGRect(x: 10, y: itemView.bounds.height - Constants.labelHeight,
+                              width: Constants.labelWidth, height: Constants.labelHeight)
+            $0.textColor = .white
+        }
+        
+        itemView.addSubview(imageContentView)
+        itemView.addSubview(blackView)
+        itemView.addSubview(nameLabel)
+        
+        let imageUrl = URL(string: banners[index].backdropPath)
+        imageContentView.sd_setImage(with: imageUrl, placeholderImage: nil)
+        nameLabel.text = banners[index].title
+        return itemView
+    }
+    
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .spacing) {
+            return value * 1.1
+        }
+        return value
+    }
+    
+    func carouselWillBeginDragging(_ carousel: iCarousel) {
+        pauseTimer()
+    }
+    
+    func carouselDidEndDragging(_ carousel: iCarousel, willDecelerate decelerate: Bool) {
+        startTimer()
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        bannerSelectTrigger.onNext(index)
     }
 }
 

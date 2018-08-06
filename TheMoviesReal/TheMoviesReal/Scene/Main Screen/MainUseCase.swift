@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol MainUseCaseType {
     func getMovieList(listType: MovieListType) -> Observable<[Movie]>
+    func getBannerList() -> Observable<[Movie]>
 }
 
 struct MainUseCase: MainUseCaseType {
@@ -19,5 +20,10 @@ struct MainUseCase: MainUseCaseType {
         let request = MovieListRequest(listType: listType, page: 1)
         let repository = MovieRepositoryImp(api: APIService.share)
         return repository.getMovieList(input: request)
+    }
+    
+    func getBannerList() -> Observable<[Movie]> {
+        let bannerRepo = BannerRepositoryImp()
+        return bannerRepo.getBanners()
     }
 }

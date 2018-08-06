@@ -24,7 +24,8 @@ class FavoriteCell: UITableViewCell, NibReusable {
     
     private func configview() {
         self.selectionStyle = .none
-        viewContainer.dropShadow(padding: 16)
+        let width = UIScreen.main.bounds.width - 16
+        viewContainer.dropShadow(width: width, height: viewContainer.bounds.height)
     }
     
     func configCell(movie: Movie) {

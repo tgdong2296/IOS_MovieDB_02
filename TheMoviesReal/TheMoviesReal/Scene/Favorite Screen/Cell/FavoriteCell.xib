@@ -141,6 +141,7 @@
                     <constraint firstItem="wtv-Np-pZg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sf5-Th-JLY"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="iLk-RV-vqA" id="pG5-XF-sy5"/>

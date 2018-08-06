@@ -16,6 +16,7 @@ import youtube_ios_player_helper
 extension Reactive where Base: YTPlayerView {
     var videoID: Binder<String> {
         return Binder(base) { view, videoID in
+            view.isHidden = false
             view.load(withVideoId: videoID, playerVars: ["playsinline": 1])
         }
     }

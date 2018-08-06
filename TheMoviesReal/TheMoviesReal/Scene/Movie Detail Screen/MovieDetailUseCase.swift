@@ -32,7 +32,7 @@ struct MovieDetailUseCase: MovieDetailUseCaseType {
         let repository = CreditRepositoryImp(api: APIService.share)
         return repository.getCredit(input: request)
             .map { creditResponse in
-                return creditResponse.casts
+                return Array(creditResponse.casts.prefix(10))
             }
     }
     
@@ -41,7 +41,7 @@ struct MovieDetailUseCase: MovieDetailUseCaseType {
         let repository = CreditRepositoryImp(api: APIService.share)
         return repository.getCredit(input: request)
             .map { creditResponse in
-                return creditResponse.crews
+                return Array(creditResponse.crews.prefix(10))
             }
     }
     
@@ -49,6 +49,9 @@ struct MovieDetailUseCase: MovieDetailUseCaseType {
         let request = TrailerRequest(movieId: id)
         let repository = TrailerRepositoryImp(api: APIService.share)
         return repository.getTrailers(input: request)
+            .filter { trailers in
+                trailers.count != 0
+            }
             .map { trailers in
                 return trailers[0].key
             }

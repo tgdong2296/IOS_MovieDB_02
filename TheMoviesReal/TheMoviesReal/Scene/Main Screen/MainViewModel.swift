@@ -16,6 +16,7 @@ struct MainViewModel: ViewModelType {
         let toMovieTypeTrigger: Driver<MovieListType>
         let toSearchTrigger: Driver<Void>
         let toMovieDetailTrigger: Driver<Movie>
+        let bannerSelectTrigger: Driver<Int>
     }
     
     struct Output {
@@ -23,6 +24,8 @@ struct MainViewModel: ViewModelType {
         let movieListNowPlaying: Driver<[Movie]>
         let movieListUpcoming: Driver<[Movie]>
         let movieListTopRated: Driver<[Movie]>
+        let bannerList: Driver<[Movie]>
+        let bannerSelected: Driver<Void>
         let error: Driver<Error>
         let indicator: Driver<Bool>
         let toSearch: Driver<Void>
@@ -75,12 +78,31 @@ struct MainViewModel: ViewModelType {
         
         let toMovieDetail = input.toMovieDetailTrigger
             .map { self.navigator.toMovieDetail(movie: $0)}
+
+        let bannerList = input.loadTrigger
+            .flatMapLatest { _ in
+                return self.useCase.getBannerList()
+                    .trackError(errortracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+        
+        let bannerSelected = input.bannerSelectTrigger
+            .withLatestFrom(bannerList) { index, banners in
+                return banners[index]
+            }
+            .do(onNext: { movie in
+                self.navigator.toMovieDetail(movie: movie)
+            })
+            .mapToVoid()
         
         return Output(
             movieListPopular: movieListPopular,
             movieListNowPlaying: movieListNowPlaying,
             movieListUpcoming: movieListUpcoming,
             movieListTopRated: movieListTopRated,
+            bannerList: bannerList,
+            bannerSelected: bannerSelected,
             error: errortracker.asDriver(),
             indicator: activityIndicator.asDriver(),
             toSearch: toSearchAction,
