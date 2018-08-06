@@ -18,6 +18,7 @@ protocol MovieDetailUseCaseType {
     func checkAvailable(movie: Movie) -> Observable<Bool>
     func addToFavorite(movie: Movie) -> Observable<DatabaseResultState>
     func deleteFromFavorite(movie: Movie) -> Observable<DatabaseResultState>
+    func getFirstReview(movieId id: Int) -> Observable<Review>
 }
 
 struct MovieDetailUseCase: MovieDetailUseCaseType {
@@ -70,5 +71,17 @@ struct MovieDetailUseCase: MovieDetailUseCaseType {
     func deleteFromFavorite(movie: Movie) -> Observable<DatabaseResultState> {
         let databaseManager = DatabaseManager.sharedInstance()
         return databaseManager.delete(movie:movie)
+    }
+    
+    func getFirstReview(movieId id: Int) -> Observable<Review> {
+        let request = ReviewRequest(movieID: id, page: 1)
+        let repository = ReviewRepositoryImp(api: APIService.share)
+        return repository.getReviews(input: request)
+            .filter { reviews in
+                reviews.count > 0
+            }
+            .map { reviews in
+                return reviews[0]
+            }
     }
 }

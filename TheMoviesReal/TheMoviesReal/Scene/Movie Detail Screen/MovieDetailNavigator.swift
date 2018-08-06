@@ -11,6 +11,7 @@ import Foundation
 
 protocol MovieDetailNavigatorType {
     func toMovieDetail(movie: Movie)
+    func toReviewDetail(movie: Movie)
 }
 
 struct MovieDetailNavigator: MovieDetailNavigatorType {
@@ -22,5 +23,10 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
         let viewModel = MovieDetailViewModel(navigator: self, useCase: useCase, movie: movie)
         viewController.bindViewModel(to: viewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func toReviewDetail(movie: Movie) {
+        let navigator = ReviewNavigator(navigationController: navigationController)
+        navigator.toReviewDetail(movie: movie)
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="208" id="KGk-i7-Jjw" customClass="ReviewCell" customModule="TheMoviesReal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="207.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W43-Vl-EPW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="207.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgt-Wd-v66">
+                                <rect key="frame" x="8" y="8" width="304" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="a11-1R-PKj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8h-Xc-iaP">
+                                <rect key="frame" x="8" y="28" width="304" height="171.5"/>
+                                <string key="text">High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tgt-Wd-v66" firstAttribute="top" secondItem="W43-Vl-EPW" secondAttribute="top" constant="8" id="3aA-K8-fOQ"/>
+                            <constraint firstAttribute="bottom" secondItem="c8h-Xc-iaP" secondAttribute="bottom" constant="8" id="3sU-Kn-Oh8"/>
+                            <constraint firstItem="Tgt-Wd-v66" firstAttribute="leading" secondItem="W43-Vl-EPW" secondAttribute="leading" constant="8" id="9LH-Ma-CjI"/>
+                            <constraint firstItem="c8h-Xc-iaP" firstAttribute="top" secondItem="Tgt-Wd-v66" secondAttribute="bottom" id="LtQ-gA-lSM"/>
+                            <constraint firstAttribute="trailing" secondItem="c8h-Xc-iaP" secondAttribute="trailing" constant="8" id="SGf-OR-9ik"/>
+                            <constraint firstAttribute="trailing" secondItem="Tgt-Wd-v66" secondAttribute="trailing" constant="8" id="fyb-Qo-lG0"/>
+                            <constraint firstItem="c8h-Xc-iaP" firstAttribute="leading" secondItem="W43-Vl-EPW" secondAttribute="leading" constant="8" id="lIO-Wm-R91"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="W43-Vl-EPW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ENO-p5-wY2"/>
+                    <constraint firstItem="W43-Vl-EPW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="GbV-GD-Qb0"/>
+                    <constraint firstAttribute="trailing" secondItem="W43-Vl-EPW" secondAttribute="trailing" id="lUM-FO-CzX"/>
+                    <constraint firstAttribute="bottom" secondItem="W43-Vl-EPW" secondAttribute="bottom" id="xzs-DH-NZp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="authorLabel" destination="Tgt-Wd-v66" id="k2E-j2-XNA"/>
+                <outlet property="contentLabel" destination="c8h-Xc-iaP" id="sGw-L4-ZMl"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="128"/>
+        </tableViewCell>
+    </objects>
+</document>

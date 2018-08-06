@@ -15,6 +15,7 @@ struct MovieDetailViewModel: ViewModelType {
         let loadTrigger: Driver<Void>
         let seeMoreTrigger: Driver<Void>
         let favoriteTrigger: Driver<Void>
+        let reviewDetailTrigger: Driver<Void>
     }
     
     struct Output {
@@ -33,6 +34,11 @@ struct MovieDetailViewModel: ViewModelType {
         let favoriteState: Driver<Bool>
         let favoriteAction: Driver<DatabaseResultState>
         let genreDetail: Driver<String>
+        let firstReviewAuthor: Driver<String>
+        let firstReviewContent: Driver<String>
+        let reviewRate: Driver<String>
+        let voteCount: Driver<String>
+        let reviewDetailClicked: Driver<Void>
     }
     
     let navigator: MovieDetailNavigatorType
@@ -111,6 +117,8 @@ struct MovieDetailViewModel: ViewModelType {
                 self.movie.posterPath = movie.posterPath
                 self.movie.popularity = movie.popularity
                 self.movie.voteAverage = movie.voteAverage
+                self.movie.voteCount = movie.voteCount
+                self.movie.posterPath = movie.posterPath
             })
         
         let movieName = input.loadTrigger
@@ -148,6 +156,40 @@ struct MovieDetailViewModel: ViewModelType {
                 return movie.getGenreString()
             }
         
+        let firstReview = input.loadTrigger
+            .flatMapLatest { _ in
+                return self.useCase.getFirstReview(movieId: self.movie.id)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+        
+        let firstReviewAuthor = firstReview
+            .map { review in
+                return "Author: \(review.author)"
+            }
+        
+        let firstReviewContent = firstReview
+            .map { review in
+                return review.content
+            }
+        
+        let reviewRate = detail
+            .map { movie in
+                return "\(movie.voteAverage)"
+        }
+        
+        let voteCount = detail
+            .map { movie in
+                return "\(movie.voteCount) vote"
+            }
+        
+        let reviewButtonClicked = input.reviewDetailTrigger
+            .do(onNext: { _ in
+                self.navigator.toReviewDetail(movie: self.movie)
+            })
+            .mapToVoid()
+        
         return Output(
             error: errorTracker.asDriver(),
             activityIndicator: activityIndicator.asDriver(),
@@ -163,7 +205,12 @@ struct MovieDetailViewModel: ViewModelType {
             overviewState: overviewState.asDriver(),
             favoriteState: favoriteState,
             favoriteAction: favoriteAction,
-            genreDetail: genreDetail
+            genreDetail: genreDetail,
+            firstReviewAuthor: firstReviewAuthor,
+            firstReviewContent: firstReviewContent,
+            reviewRate: reviewRate,
+            voteCount: voteCount,
+            reviewDetailClicked: reviewButtonClicked
         )
     }
 }
