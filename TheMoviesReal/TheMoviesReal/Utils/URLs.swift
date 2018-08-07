@@ -25,6 +25,8 @@ struct URLs {
     
     static let APIMoviePosterPath = "https://image.tmdb.org/t/p/w300_and_h450_bestv2"
     
+    static let APIPersonProfilePath = "https://image.tmdb.org/t/p/w500_and_h282_face"
+    
     static let APIMovieByGenreURL = APIBaseUrl + "/genre/"
     
     static let APICreditURL = APIBaseUrl + "/movie/"
@@ -36,4 +38,6 @@ struct URLs {
     static let HomePageURL = "https://www.themoviedb.org"
     
     static let APIReviewURL = APIBaseUrl + "/movie/"
+
+    static let APIPerson = APIBaseUrl + "/person/"
 }

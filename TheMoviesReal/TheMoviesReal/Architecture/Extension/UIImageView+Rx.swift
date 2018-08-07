@@ -19,4 +19,11 @@ extension Reactive where Base: UIImageView {
             view.sd_setImage(with: imageUrl, placeholderImage: nil)
         }
     }
+    
+    var profilePath: Binder<String> {
+        return Binder(base) { view, profilePath in
+            let imageUrl = URL(string: URLs.APIPersonProfilePath + profilePath)
+            view.sd_setImage(with: imageUrl, placeholderImage: nil)
+        }
+    }
 }

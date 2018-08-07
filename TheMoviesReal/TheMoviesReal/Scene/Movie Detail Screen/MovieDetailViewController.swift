@@ -77,7 +77,9 @@ class MovieDetailViewController: UIViewController, BindableType {
             loadTrigger: Driver.just(()),
             seeMoreTrigger: btnSeeMore.rx.tap.asDriver(),
             favoriteTrigger: favoriteButton.rx.tap.asDriver(),
-            reviewDetailTrigger: reviewButton.rx.tap.asDriver()
+            reviewDetailTrigger: reviewButton.rx.tap.asDriver(),
+            toCastTrigger: actorCollectionView.rx.itemSelected.asDriver(),
+            toCrewTrigger: creditCollectionView.rx.itemSelected.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -199,6 +201,14 @@ class MovieDetailViewController: UIViewController, BindableType {
         
         output.activityIndicator
             .drive(rx.isLoading)
+            .disposed(by: rx.disposeBag)
+        
+        output.toCast
+            .drive()
+            .disposed(by: rx.disposeBag)
+        
+        output.toCrew
+            .drive()
             .disposed(by: rx.disposeBag)
     }
     

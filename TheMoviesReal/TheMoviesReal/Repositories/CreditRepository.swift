@@ -12,6 +12,7 @@ import RxSwift
 
 protocol CreditRepository {
     func getCredit(input: MovieCreditRequest) -> Observable<MovieCreditResponse>
+    func getPersonCredit(input: PersonCreditRequest) -> Observable<PersonCreditResponse>
 }
 
 class CreditRepositoryImp: CreditRepository {
@@ -26,5 +27,12 @@ class CreditRepositoryImp: CreditRepository {
             .map { (response: MovieCreditResponse) in
                 return response
             }
+    }
+    
+    func getPersonCredit(input: PersonCreditRequest) -> Observable<PersonCreditResponse> {
+        return api.request(input: input)
+            .map { (response: PersonCreditResponse) in
+                return response
+        }
     }
 }
