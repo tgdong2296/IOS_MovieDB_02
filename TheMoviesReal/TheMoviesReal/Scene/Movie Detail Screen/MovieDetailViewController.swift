@@ -19,6 +19,7 @@ class MovieDetailViewController: UIViewController, BindableType {
         static let overviewEmpty = "This movie doesn't have overview!"
         static let addSuccess = "Added to Favorite!"
         static let deleteSuccess = "Deleted from Favorite!"
+        static let reviewViewContainerHeightConstraint: CGFloat = 109
     }
     @IBOutlet private weak var imgPoster: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -32,6 +33,14 @@ class MovieDetailViewController: UIViewController, BindableType {
     @IBOutlet private weak var actorCollectionView: UICollectionView!
     @IBOutlet private weak var creditCollectionView: UICollectionView!
     @IBOutlet private weak var overviewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var reviewRateLabel: UILabel!
+    @IBOutlet private weak var reviewStarRating: CosmosView!
+    @IBOutlet private weak var reviewVoteCountLabel: UILabel!
+    @IBOutlet private weak var reviewAuthorLabel: UILabel!
+    @IBOutlet private weak var reviewDetailLabel: UILabel!
+    @IBOutlet private weak var reviewButton: UIButton!
+    @IBOutlet private weak var reviewViewContainer: UIView!
+    @IBOutlet private weak var reviewViewContainerHeightConstraint: NSLayoutConstraint!
     
     private var options = Options()
     var viewModel: MovieDetailViewModel!
@@ -53,17 +62,22 @@ class MovieDetailViewController: UIViewController, BindableType {
         creditCollectionView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+        
         imgPoster.dropShadow(width: imgPoster.frame.width, height: imgPoster.frame.height)
         youtubeView.isHidden = true
         youtubeView.dropShadow(width: youtubeView.frame.width, height: youtubeView.frame.height)
+        
         self.navigationController?.navigationItem.backBarButtonItem?.title = "Back"
+        reviewViewContainerHeightConstraint.constant = 0
+        reviewViewContainer.isHidden = true
     }
     
     func bindViewModel() {
         let input = MovieDetailViewModel.Input(
             loadTrigger: Driver.just(()),
             seeMoreTrigger: btnSeeMore.rx.tap.asDriver(),
-            favoriteTrigger: favoriteButton.rx.tap.asDriver()
+            favoriteTrigger: favoriteButton.rx.tap.asDriver(),
+            reviewDetailTrigger: reviewButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -136,6 +150,36 @@ class MovieDetailViewController: UIViewController, BindableType {
         
         output.movieRate
             .drive(startRatingView.rx.rate)
+            .disposed(by: rx.disposeBag)
+        
+        output.firstReviewContent
+            .drive(onNext: { [unowned self] content in
+                self.reviewDetailLabel.text = content
+                self.reviewViewContainer.isHidden = false
+                self.reviewViewContainerHeightConstraint.constant = Constants.reviewViewContainerHeightConstraint
+            })
+            .disposed(by: rx.disposeBag)
+        
+        output.movieRate
+            .drive(onNext: { [unowned self] rate in
+                self.reviewStarRating.rating = Double(rate)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        output.reviewRate
+            .drive(reviewRateLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        output.voteCount
+            .drive(reviewVoteCountLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        output.firstReviewAuthor
+            .drive(reviewAuthorLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        output.reviewDetailClicked
+            .drive()
             .disposed(by: rx.disposeBag)
         
         output.movieName

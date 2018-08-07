@@ -21,7 +21,7 @@ class Movie: BaseModel {
     var title = ""
     var backdropPath = ""
     var popularity: Int = 0
-    var voteCount = ""
+    var voteCount = 0
     var video = ""
     var voteAverage: Float = 0.0
     //property only in movie detail
