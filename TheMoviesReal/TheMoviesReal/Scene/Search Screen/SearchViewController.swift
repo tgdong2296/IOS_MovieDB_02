@@ -56,7 +56,7 @@ final class SearchViewController: UIViewController, BindableType {
             }
             .disposed(by: rx.disposeBag)
         output.loading
-            .drive(rx.isLoading)
+            .drive(rx.searchLoading)
             .disposed(by: rx.disposeBag)
         output.loadingMore
             .drive(collectionView.loadingMore)

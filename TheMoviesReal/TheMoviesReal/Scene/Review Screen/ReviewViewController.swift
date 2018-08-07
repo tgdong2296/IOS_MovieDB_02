@@ -33,6 +33,7 @@ class ReviewViewController: UIViewController, BindableType {
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
         tableView.register(cellType: ReviewCell.self)
+        posterImageView.dropShadow(width: posterImageView.frame.width, height: posterImageView.frame.height)
     }
     
     func bindViewModel() {
