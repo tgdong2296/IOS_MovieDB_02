@@ -20,7 +20,7 @@ class PersonCell: UICollectionViewCell, NibReusable {
     
     func configCell(imagePath: String, name: String) {
         let imageUrl = URL(string: URLs.APIMoviePosterPath + imagePath)
-        imgPoster.sd_setImage(with: imageUrl, placeholderImage: nil)
+        imgPoster.sd_setImage(with: imageUrl, placeholderImage: #imageLiteral(resourceName: "ic_person_100px"))
         nameLabel.text = name
     }
 

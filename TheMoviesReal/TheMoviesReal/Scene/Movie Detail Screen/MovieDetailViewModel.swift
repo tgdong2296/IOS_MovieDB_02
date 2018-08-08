@@ -194,7 +194,7 @@ struct MovieDetailViewModel: ViewModelType {
         
         let firstReviewAuthor = firstReview
             .map { review in
-                return "Author: \(review.author)"
+                return "\(review.author)"
             }
         
         let firstReviewContent = firstReview
