@@ -16,7 +16,7 @@ import youtube_ios_player_helper
 
 class MovieDetailViewController: UIViewController, BindableType {
     private struct Constants {
-        static let overviewEmpty = "This movie doesn't have overview!"
+        static let overviewEmpty = "No description provided for this movie"
         static let addSuccess = "Added to Favorite!"
         static let deleteSuccess = "Deleted from Favorite!"
         static let reviewViewContainerHeightConstraint: CGFloat = 109

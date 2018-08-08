@@ -27,4 +27,5 @@ target 'TheMoviesReal' do
 	pod 'iCarousel'
 	pod 'hpple'
 	pod 'Then'
+	pod 'MKProgress'
 end

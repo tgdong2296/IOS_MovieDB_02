@@ -21,6 +21,7 @@ final class TableViewCell: UITableViewCell, NibReusable {
     @IBOutlet private weak var cellTitle: UILabel!
     @IBOutlet private weak var cellCollectionView: UICollectionView!
     @IBOutlet private weak var toMovieListTypeButton: UIButton!
+    @IBOutlet private weak var iconImageView: UIImageView!
     
     @IBAction func toMovieListButtonAction(_ sender: Any) {
         toMovieListAction?() 
@@ -28,6 +29,16 @@ final class TableViewCell: UITableViewCell, NibReusable {
     
     func updateCell(category: MovieListType) {
         cellTitle.text = category.rawValue
+        switch category {
+        case .popular:
+            iconImageView.image = #imageLiteral(resourceName: "ic_title_popular")
+        case .nowPlaying:
+            iconImageView.image = #imageLiteral(resourceName: "ic_title_nowplaying")
+        case .topRated:
+            iconImageView.image = #imageLiteral(resourceName: "ic_title_toprate")
+        case .upComing:
+            iconImageView.image = #imageLiteral(resourceName: "ic_title_upcoming")
+        }
     }
     
     override func awakeFromNib() {

@@ -69,7 +69,7 @@ struct PersonViewModel: ViewModelType {
         
         let personPopularity = person
             .map { person in
-                return "\(person.popularity)"
+                return "\(Int(person.popularity * 1000))"
         }
         
         let personBiography = person

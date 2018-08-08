@@ -18,7 +18,7 @@ final class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
         self.movieTitle.text = movie.title
         let posterPath = movie.posterPath
         let url = URL(string: URLs.APIMoviePosterPath + posterPath)
-        self.moviePoster.sd_setImage(with: url, placeholderImage: nil)
+        self.moviePoster.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img_poster_placeholder"))
     }
     
     override func awakeFromNib() {

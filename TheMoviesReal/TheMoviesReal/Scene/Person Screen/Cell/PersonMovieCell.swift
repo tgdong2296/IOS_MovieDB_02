@@ -21,7 +21,7 @@ class PersonMovieCell: UICollectionViewCell, NibReusable {
     
     func configCell(imagePath: String, name: String) {
         let imageUrl = URL(string: URLs.APIMoviePosterPath + imagePath)
-        imgPoster.sd_setImage(with: imageUrl, placeholderImage: nil)
+        imgPoster.sd_setImage(with: imageUrl, placeholderImage: #imageLiteral(resourceName: "img_poster_placeholder"))
         nameLabel.text = name
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import MBProgressHUD
 import RxSwift
 import RxCocoa
+import MKProgress
 
 extension Reactive where Base: UIViewController {
     var error: Binder<Error> {
@@ -19,6 +20,22 @@ extension Reactive where Base: UIViewController {
     }
     
     var isLoading: Binder<Bool> {
+        return Binder(base) { viewController, isLoading in
+            if isLoading {
+                MKProgress.config.hudType = .radial
+                MKProgress.config.hudColor = UIColor(red: 22 / 255.0, green: 20 / 255.0, blue: 21 / 255.0, alpha: 1.0)
+                MKProgress.config.circleBorderColor = .orange
+                MKProgress.config.logoImage = #imageLiteral(resourceName: "indicator_logo")
+                MKProgress.show()
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                    MKProgress.hide()
+                }
+            }
+        }
+    }
+    
+    var searchLoading: Binder<Bool> {
         return Binder(base) { viewController, isLoading in
             if isLoading {
                 let hud = MBProgressHUD.showAdded(to: viewController.view, animated: true)

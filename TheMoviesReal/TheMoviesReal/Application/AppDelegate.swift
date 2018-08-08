@@ -20,7 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         bindViewModel()
         configNavigationBar()
+        changeColorStatusBar()
+        delayLaunchScreen()
         return true
+    }
+    
+    private func delayLaunchScreen() {
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 2.5))
+    }
+    
+    private func changeColorStatusBar() {
+        UIApplication.shared.isStatusBarHidden = false
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        UINavigationBar.appearance().barStyle = .black
+        statusBar.backgroundColor = .black
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     private func configNavigationBar() {
