@@ -16,14 +16,14 @@ extension Reactive where Base: UIImageView {
     var posterPath: Binder<String> {
         return Binder(base) { view, posterPath in
             let imageUrl = URL(string: URLs.APIMoviePosterPath + posterPath)
-            view.sd_setImage(with: imageUrl, placeholderImage: nil)
+            view.sd_setImage(with: imageUrl, placeholderImage: #imageLiteral(resourceName: "img_poster_placeholder"))
         }
     }
     
     var profilePath: Binder<String> {
         return Binder(base) { view, profilePath in
             let imageUrl = URL(string: URLs.APIPersonProfilePath + profilePath)
-            view.sd_setImage(with: imageUrl, placeholderImage: nil)
+            view.sd_setImage(with: imageUrl, placeholderImage: #imageLiteral(resourceName: "img_profile_placeholder"))
         }
     }
 }

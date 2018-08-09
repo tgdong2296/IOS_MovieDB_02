@@ -25,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRi-JG-KNt">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="683"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shd-xd-WhE">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="shd-xd-WhE">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="shd-xd-WhE" secondAttribute="height" multiplier="400:225" id="FDi-aP-wet"/>
@@ -294,4 +294,7 @@
             <point key="canvasLocation" x="-604" y="152"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="img_profile_placeholder" width="245" height="136"/>
+    </resources>
 </document>

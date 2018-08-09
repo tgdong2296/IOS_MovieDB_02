@@ -22,7 +22,7 @@ class MovieCollectionCell: UICollectionViewCell, NibReusable {
 
     func configCell(movie: Movie) {
         let imageUrl = URL(string: URLs.APIMoviePosterPath + movie.posterPath)
-        imgPoster.sd_setImage(with: imageUrl, placeholderImage: nil)
+        imgPoster.sd_setImage(with: imageUrl, placeholderImage: #imageLiteral(resourceName: "img_poster_placeholder"))
         movieNameLabel.text = movie.title
         starRating.rating = Double(movie.voteAverage / 2)
     }

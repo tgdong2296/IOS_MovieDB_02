@@ -13,7 +13,11 @@ import RxSwift
 import NSObject_Rx
 
 class PersonViewController: UIViewController, BindableType {
-
+    private struct Constants {
+        static let biographyEmpty = "No description provided for this person"
+        static let unknown = "Unknown"
+    }
+    
     @IBOutlet private weak var imgPerson: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var departmentLabel: UILabel!
@@ -86,7 +90,11 @@ class PersonViewController: UIViewController, BindableType {
             .disposed(by: rx.disposeBag)
         
         output.personBiography
-            .drive(biographyLabel.rx.text)
+            .drive(onNext: { [unowned self] biography in
+                self.biographyLabel.text = biography.isEmpty ?
+                    Constants.biographyEmpty : biography
+                self.seeMoreButton.isHidden = biography.isEmpty
+            })
             .disposed(by: rx.disposeBag)
         
         output.personBirthday
@@ -102,7 +110,10 @@ class PersonViewController: UIViewController, BindableType {
             .disposed(by: rx.disposeBag)
         
         output.personBirthPlace
-            .drive(birthPlaceLabel.rx.text)
+            .drive(onNext: { [unowned self] birthPlace in
+                self.birthPlaceLabel.text = birthPlace.isEmpty ?
+                    Constants.unknown : birthPlace
+            })
             .disposed(by: rx.disposeBag)
     }
 

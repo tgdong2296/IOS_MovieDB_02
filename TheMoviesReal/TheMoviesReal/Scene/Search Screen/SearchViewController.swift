@@ -78,7 +78,6 @@ final class SearchViewController: UIViewController, BindableType {
                 self.noResultLabel.isHidden = !isEmpty
             })
             .disposed(by: rx.disposeBag)
-
     }
 }
 
