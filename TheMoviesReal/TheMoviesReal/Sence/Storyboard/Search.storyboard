@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +28,7 @@
                                 <color key="barTintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="anl-YC-Xnx" customClass="LoadMoreCollectionView" customModule="TheMoviesReal" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="anl-YC-Xnx" customClass="LoadMoreCollectionView" customModule="TheMoviesReal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OR1-zV-LPH">
@@ -52,15 +54,24 @@
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_smile" translatesAutoresizingMaskIntoConstraints="NO" id="rrh-ca-v2U">
+                                <rect key="frame" x="166" y="308" width="42.5" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rrh-ca-v2U" secondAttribute="height" multiplier="1:1" id="XXD-Z1-9Ce"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="sFt-wc-lPx" firstAttribute="centerX" secondItem="CR6-58-VBL" secondAttribute="centerX" id="2yA-1U-ICf"/>
+                            <constraint firstItem="rrh-ca-v2U" firstAttribute="width" secondItem="sFt-wc-lPx" secondAttribute="width" multiplier="1/3" id="3Wc-cL-TB7"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="leading" secondItem="CR6-58-VBL" secondAttribute="leading" id="5S0-vv-3Wb"/>
+                            <constraint firstItem="sFt-wc-lPx" firstAttribute="top" secondItem="rrh-ca-v2U" secondAttribute="bottom" constant="5" id="5ZP-5f-fmr"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="top" secondItem="CR6-58-VBL" secondAttribute="top" id="UXJ-Ee-bFu"/>
                             <constraint firstItem="CR6-58-VBL" firstAttribute="bottom" secondItem="anl-YC-Xnx" secondAttribute="bottom" id="ZMV-tG-w4W"/>
                             <constraint firstItem="sFt-wc-lPx" firstAttribute="centerY" secondItem="CR6-58-VBL" secondAttribute="centerY" id="Zff-gZ-vON"/>
                             <constraint firstItem="anl-YC-Xnx" firstAttribute="leading" secondItem="CR6-58-VBL" secondAttribute="leading" id="adA-JA-wo6"/>
+                            <constraint firstItem="rrh-ca-v2U" firstAttribute="centerX" secondItem="sFt-wc-lPx" secondAttribute="centerX" id="bej-DS-5ZS"/>
                             <constraint firstItem="CR6-58-VBL" firstAttribute="trailing" secondItem="anl-YC-Xnx" secondAttribute="trailing" id="cyE-pZ-v4N"/>
                             <constraint firstItem="2ie-s2-K81" firstAttribute="trailing" secondItem="CR6-58-VBL" secondAttribute="trailing" id="dvU-YO-Bww"/>
                             <constraint firstItem="anl-YC-Xnx" firstAttribute="top" secondItem="2ie-s2-K81" secondAttribute="bottom" id="qdK-ik-Ja4"/>
@@ -70,6 +81,7 @@
                     <navigationItem key="navigationItem" title="Search Movies" id="qxD-a8-LMD"/>
                     <connections>
                         <outlet property="collectionView" destination="anl-YC-Xnx" id="KMs-ux-XWL"/>
+                        <outlet property="noResultImage" destination="rrh-ca-v2U" id="ASi-P9-5D1"/>
                         <outlet property="noResultLabel" destination="sFt-wc-lPx" id="Liq-Bd-KAJ"/>
                         <outlet property="searchBar" destination="2ie-s2-K81" id="UlX-ZT-XiA"/>
                     </connections>
@@ -100,4 +112,7 @@
             <point key="canvasLocation" x="-60" y="205"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_smile" width="24" height="24"/>
+    </resources>
 </document>

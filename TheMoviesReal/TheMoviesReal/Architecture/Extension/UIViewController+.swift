@@ -40,4 +40,8 @@ extension UIViewController {
             toastLabel.removeFromSuperview()
         })
     }
+
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
