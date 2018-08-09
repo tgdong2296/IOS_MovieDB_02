@@ -26,7 +26,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byb-bZ-Bdw">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="nfb-sK-Hqe">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="nfb-sK-Hqe">
                                                 <rect key="frame" x="8" y="8" width="112.5" height="168.5"/>
                                                 <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -530,7 +530,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MAI-JV-A5A">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MAI-JV-A5A">
                                             <rect key="frame" x="16" y="16" width="102.5" height="140"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="MAI-JV-A5A" secondAttribute="height" multiplier="22:30" id="Fym-fj-N6g"/>

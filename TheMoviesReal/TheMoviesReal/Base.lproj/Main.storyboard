@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oBC-mh-IdW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oBC-mh-IdW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -330,6 +330,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="Hzg-a8-2A9" kind="show" id="6Pb-V2-P4X"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -344,6 +347,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FD9-4q-Qyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2562" y="-340"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GeA-UL-EXi">
+            <objects>
+                <viewController id="Hzg-a8-2A9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SYz-V3-KTq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="img_navigator_bar_title" translatesAutoresizingMaskIntoConstraints="NO" id="jbz-l7-eCa">
+                                <rect key="frame" x="-97" y="309" width="569" height="97"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jbz-l7-eCa" firstAttribute="centerY" secondItem="MRR-ib-KSQ" secondAttribute="centerY" constant="-8" id="AHB-Md-wZ5"/>
+                            <constraint firstItem="jbz-l7-eCa" firstAttribute="centerX" secondItem="MRR-ib-KSQ" secondAttribute="centerX" id="mIG-Es-qKy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MRR-ib-KSQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiN-sP-ZlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4653.6000000000004" y="-716.49175412293857"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="55G-3q-kJe">
@@ -387,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Skc-Da-MER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4138" y="-340"/>
+            <point key="canvasLocation" x="5428" y="-716"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gFa-hD-kqn">
@@ -506,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1e-M5-Nsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3846" y="465"/>
+            <point key="canvasLocation" x="3846" y="-716"/>
         </scene>
         <!--Popular Movies-->
         <scene sceneID="DOv-6M-A6x">
@@ -668,5 +695,6 @@
         <image name="ic_info_50px" width="25" height="25"/>
         <image name="ic_menu_50px" width="25" height="25"/>
         <image name="ic_search_50px" width="25" height="25"/>
+        <image name="img_navigator_bar_title" width="628" height="97"/>
     </resources>
 </document>

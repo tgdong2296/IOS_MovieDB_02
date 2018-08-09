@@ -12,12 +12,14 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 import NSObject_Rx
+import RxGesture
 
 final class SearchViewController: UIViewController, BindableType {
 
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var collectionView: LoadMoreCollectionView!
     @IBOutlet private weak var noResultLabel: UILabel!
+    @IBOutlet private weak var noResultImage: UIImageView!
     private var options = Options()
     var viewModel: SearchViewModel!
     
@@ -43,7 +45,15 @@ final class SearchViewController: UIViewController, BindableType {
             loadTrigger: Driver.just(()),
             reloadTrigger: collectionView.refreshTrigger,
             loadMoreTrigger: collectionView.loadMoreTrigger,
-            selectMovieTrigger: collectionView.rx.itemSelected.asDriver()
+            selectMovieTrigger: collectionView.rx.itemSelected.asDriver(),
+            dismissKeyboardFromCollectionViewTrigger: collectionView.rx
+                .anyGesture(.tap(), .swipe([.up, .down]))
+                .when(.recognized)
+                .asDriverOnErrorJustComplete(),
+            dismissKeybroadFromViewTrigger: self.view.rx
+                .tapGesture()
+                .when(.recognized)
+                .asDriverOnErrorJustComplete()
         )
         let output = viewModel.transform(input)
         
@@ -76,6 +86,18 @@ final class SearchViewController: UIViewController, BindableType {
         output.isEmptyData
             .drive(onNext: { [unowned self] isEmpty in
                 self.noResultLabel.isHidden = !isEmpty
+                self.noResultImage.isHidden = !isEmpty
+                self.collectionView.isHidden = isEmpty
+            })
+            .disposed(by: rx.disposeBag)
+        output.dismissKeyboardFromCollectionView
+            .drive(onNext: { [unowned self] _ in
+                self.dismissKeyboard()
+            })
+            .disposed(by: rx.disposeBag)
+        output.dismissKeyboardFromView
+            .drive(onNext: { [unowned self] _ in
+                self.dismissKeyboard()
             })
             .disposed(by: rx.disposeBag)
     }

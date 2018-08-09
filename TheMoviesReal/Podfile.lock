@@ -17,12 +17,16 @@ PODS:
     - Reusable/View (= 4.0.2)
   - Reusable/Storyboard (4.0.2)
   - Reusable/View (4.0.2)
+  - RevealingSplashView (0.5.0)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
-  - SDWebImage (4.4.1):
-    - SDWebImage/Core (= 4.4.1)
-  - SDWebImage/Core (4.4.1)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - SideMenu (4.0.0)
   - Then (2.3.0)
   - youtube-ios-player-helper (0.1.6)
@@ -37,7 +41,9 @@ DEPENDENCIES:
   - MKProgress
   - "NSObject+Rx"
   - Reusable
+  - RevealingSplashView
   - RxCocoa
+  - RxGesture
   - RxSwift
   - SDWebImage
   - SideMenu
@@ -57,7 +63,9 @@ SPEC REPOS:
     - "NSObject+Rx"
     - ObjectMapper
     - Reusable
+    - RevealingSplashView
     - RxCocoa
+    - RxGesture
     - RxSwift
     - SDWebImage
     - SideMenu
@@ -76,13 +84,15 @@ SPEC CHECKSUMS:
   "NSObject+Rx": 9a5eeff5e08156f849fa973514456f28eef08742
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Reusable: 584a5629747c52e0f6a77841b400dc2643f6fa0f
+  RevealingSplashView: 0794eecad3a8983ac11a1fe474e9a9b51b926780
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: bc90e825a6fb47db290fee6d0baf800cc41ae2a5
+PODFILE CHECKSUM: 679663ba5c7647953eab2375806ff29c828ddfa4
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

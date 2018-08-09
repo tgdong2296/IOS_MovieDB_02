@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import RxGesture
 
 struct SearchViewModel: ViewModelType {
     struct  Input {
@@ -18,8 +19,10 @@ struct SearchViewModel: ViewModelType {
         let reloadTrigger: Driver<Void>
         let loadMoreTrigger: Driver<Void>
         let selectMovieTrigger: Driver<IndexPath>
+        let dismissKeyboardFromCollectionViewTrigger: Driver<GestureRecognizer>
+        let dismissKeybroadFromViewTrigger: Driver<UITapGestureRecognizer>
     }
-    
+
     struct Output {
         let movieList: Driver<[Movie]>
         let loading: Driver<Bool>
@@ -29,6 +32,8 @@ struct SearchViewModel: ViewModelType {
         let error: Driver<Error>
         let selectedMovie: Driver<Void>
         let isEmptyData: Driver<Bool>
+        let dismissKeyboardFromCollectionView: Driver<Void>
+        let dismissKeyboardFromView: Driver<Void>
     }
     
     let navigator: SearchNavigatorType
@@ -77,6 +82,12 @@ struct SearchViewModel: ViewModelType {
                 element.0.isEmpty
             }
         
+        let dismissKeybroadFromCollectionView = input.dismissKeyboardFromCollectionViewTrigger
+            .mapToVoid()
+        
+        let dismissKeyboardFromView = input.dismissKeybroadFromViewTrigger
+            .mapToVoid()
+        
         return Output(
             movieList: movieList,
             loading: Loading,
@@ -85,7 +96,9 @@ struct SearchViewModel: ViewModelType {
             fetchItem: fetchItem,
             error: loadError,
             selectedMovie: selectedMovie,
-            isEmptyData: isEmptyData
+            isEmptyData: isEmptyData,
+            dismissKeyboardFromCollectionView: dismissKeybroadFromCollectionView,
+            dismissKeyboardFromView: dismissKeyboardFromView
         )
     }
 }
