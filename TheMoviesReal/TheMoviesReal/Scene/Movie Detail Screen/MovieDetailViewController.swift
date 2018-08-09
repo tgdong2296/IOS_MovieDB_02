@@ -164,7 +164,7 @@ class MovieDetailViewController: UIViewController, BindableType {
         
         output.movieRate
             .drive(onNext: { [unowned self] rate in
-                self.reviewStarRating.rating = Double(rate)
+                self.reviewStarRating.rating = Double(rate / 2)
             })
             .disposed(by: rx.disposeBag)
         

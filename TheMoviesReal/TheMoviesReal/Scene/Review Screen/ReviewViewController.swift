@@ -52,7 +52,7 @@ class ReviewViewController: UIViewController, BindableType {
         output.reviewRate
             .drive(onNext: { [unowned self] rate in
                 self.reviewStarRating.rating = Double(rate)
-                self.reviewRate.text = "\(rate)"
+                self.reviewRate.text = "\(rate / 2)"
             })
             .disposed(by: rx.disposeBag)
         

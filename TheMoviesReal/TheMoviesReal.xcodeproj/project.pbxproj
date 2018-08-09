@@ -66,6 +66,7 @@
 		8414C483210AB38A009CDE81 /* GenreDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414C482210AB38A009CDE81 /* GenreDetailUseCase.swift */; };
 		8414C485210AB7A4009CDE81 /* MovieByGenreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414C484210AB7A4009CDE81 /* MovieByGenreRequest.swift */; };
 		8414C487210AB9BE009CDE81 /* MovieByGenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414C486210AB9BE009CDE81 /* MovieByGenreResponse.swift */; };
+		84305355211AC1E800C515B4 /* GenreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84305353211AC1E800C515B4 /* GenreCell.xib */; };
 		843CA6072109AD99003FFB68 /* RefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA6062109AD99003FFB68 /* RefreshAutoFooter.swift */; };
 		843CA6092109AE11003FFB68 /* LoadMoreCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA6082109AE11003FFB68 /* LoadMoreCollectionView.swift */; };
 		843CA60B2109AEE3003FFB68 /* ViewModelLoadMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CA60A2109AEE3003FFB68 /* ViewModelLoadMore.swift */; };
@@ -196,6 +197,7 @@
 		8414C482210AB38A009CDE81 /* GenreDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDetailUseCase.swift; sourceTree = "<group>"; };
 		8414C484210AB7A4009CDE81 /* MovieByGenreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieByGenreRequest.swift; sourceTree = "<group>"; };
 		8414C486210AB9BE009CDE81 /* MovieByGenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieByGenreResponse.swift; sourceTree = "<group>"; };
+		84305353211AC1E800C515B4 /* GenreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreCell.xib; sourceTree = "<group>"; };
 		843CA6062109AD99003FFB68 /* RefreshAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshAutoFooter.swift; sourceTree = "<group>"; };
 		843CA6082109AE11003FFB68 /* LoadMoreCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCollectionView.swift; sourceTree = "<group>"; };
 		843CA60A2109AEE3003FFB68 /* ViewModelLoadMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelLoadMore.swift; sourceTree = "<group>"; };
@@ -537,6 +539,15 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		8430534D211AC18200C515B4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				849A3FE921081CD2009D76EF /* GenreCell.swift */,
+				84305353211AC1E800C515B4 /* GenreCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		843CA6052109AB52003FFB68 /* LoadMore */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,9 +709,9 @@
 		849A3FE621081CD2009D76EF /* Genre Screen */ = {
 			isa = PBXGroup;
 			children = (
+				8430534D211AC18200C515B4 /* Cell */,
 				849A3FE721081CD2009D76EF /* GenreViewController.swift */,
 				849A3FE821081CD2009D76EF /* GenreViewModel.swift */,
-				849A3FE921081CD2009D76EF /* GenreCell.swift */,
 				849A3FEA21081CD2009D76EF /* GenreUseCase.swift */,
 				849A3FEB21081CD2009D76EF /* GenreNavigator.swift */,
 			);
@@ -826,6 +837,7 @@
 				27960B792105DA4200740856 /* Assets.xcassets in Resources */,
 				8481E967210F0203000BFC66 /* PersonCell.xib in Resources */,
 				27CE80C7210EAB4C006E5AD8 /* Search.storyboard in Resources */,
+				84305355211AC1E800C515B4 /* GenreCell.xib in Resources */,
 				27960B742105DA4200740856 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1155,6 +1167,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BB5XCS95GY;
 				INFOPLIST_FILE = TheMoviesReal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Practice.TheMoviesReal;
@@ -1170,6 +1183,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BB5XCS95GY;
 				INFOPLIST_FILE = TheMoviesReal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Practice.TheMoviesReal;

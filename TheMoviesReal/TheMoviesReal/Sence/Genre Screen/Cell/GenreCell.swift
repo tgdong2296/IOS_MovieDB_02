@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class GenreCell: UICollectionViewCell, Reusable {
+class GenreCell: UICollectionViewCell, NibReusable {
     @IBOutlet private weak var genreNameLabel: UILabel!
     
     func configCell(genre: Genre) {

@@ -40,4 +40,6 @@ struct URLs {
     static let APIReviewURL = APIBaseUrl + "/movie/"
 
     static let APIPerson = APIBaseUrl + "/person/"
+    
+    static let APIMovieBackdropPath = "https://image.tmdb.org/t/p/w500"
 }
