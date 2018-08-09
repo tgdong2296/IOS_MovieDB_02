@@ -81,7 +81,7 @@ struct MainViewModel: ViewModelType {
 
         let bannerList = input.loadTrigger
             .flatMapLatest { _ in
-                return self.useCase.getBannerList()
+                return self.useCase.getBannerList(listType: .upComing)
                     .trackError(errortracker)
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()

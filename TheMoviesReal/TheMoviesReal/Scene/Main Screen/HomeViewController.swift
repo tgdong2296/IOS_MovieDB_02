@@ -185,7 +185,7 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
         itemView.addSubview(blackView)
         itemView.addSubview(nameLabel)
         
-        let imageUrl = URL(string: banners[index].backdropPath)
+        let imageUrl = URL(string: URLs.APIMovieBackdropPath + banners[index].backdropPath)
         imageContentView.sd_setImage(with: imageUrl, placeholderImage: nil)
         nameLabel.text = banners[index].title
         return itemView
@@ -203,6 +203,7 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
     }
     
     func carouselDidEndDragging(_ carousel: iCarousel, willDecelerate decelerate: Bool) {
+        carouseViewOffset = CGFloat(carouselView.currentItemIndex)
         startTimer()
     }
     
