@@ -17,6 +17,7 @@ import Then
 
 final class HomeViewController: UIViewController, BindableType {
     private struct Constants {
+        static let screenBounds = UIScreen.main.bounds
         static let bannerWidth = UIScreen.main.bounds.width - 60
         static let bannerHeight = (UIScreen.main.bounds.width - 60) / 2
         static let labelWidth = UIScreen.main.bounds.width - 60

@@ -28,6 +28,7 @@ target 'TheMoviesReal' do
 	pod 'hpple'
 	pod 'Then'
 	pod 'MKProgress'
-	pod 'RevealingSplashView'
 	pod 'RxGesture'
+	pod 'Cards'
+
 end

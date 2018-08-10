@@ -47,11 +47,7 @@ final class SearchViewController: UIViewController, BindableType {
             loadMoreTrigger: collectionView.loadMoreTrigger,
             selectMovieTrigger: collectionView.rx.itemSelected.asDriver(),
             dismissKeyboardFromCollectionViewTrigger: collectionView.rx
-                .anyGesture(.tap(), .swipe([.up, .down]))
-                .when(.recognized)
-                .asDriverOnErrorJustComplete(),
-            dismissKeybroadFromViewTrigger: self.view.rx
-                .tapGesture()
+                .anyGesture(.swipe([.up, .down]))
                 .when(.recognized)
                 .asDriverOnErrorJustComplete()
         )
@@ -91,11 +87,6 @@ final class SearchViewController: UIViewController, BindableType {
             })
             .disposed(by: rx.disposeBag)
         output.dismissKeyboardFromCollectionView
-            .drive(onNext: { [unowned self] _ in
-                self.dismissKeyboard()
-            })
-            .disposed(by: rx.disposeBag)
-        output.dismissKeyboardFromView
             .drive(onNext: { [unowned self] _ in
                 self.dismissKeyboard()
             })

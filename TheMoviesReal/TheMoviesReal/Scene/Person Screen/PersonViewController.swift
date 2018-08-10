@@ -122,7 +122,7 @@ class PersonViewController: UIViewController, BindableType {
             UIView.animate(withDuration: 4, animations: {
                 let width = UIScreen.main.bounds.width - 16
                 let height = self.biographyLabel?.text?.heightWithConstrainedWidth(width: width) ?? 0
-                self.biographyHeightConstraint?.constant = height + 10
+                self.biographyHeightConstraint?.constant = height + 20
                 self.seeMoreButton.setTitle("<< See Less", for: .normal)
             })
         } else {

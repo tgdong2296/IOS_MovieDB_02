@@ -101,6 +101,12 @@
 		8473B0432106C8E900F980D7 /* AppUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473B0422106C8E900F980D7 /* AppUseCase.swift */; };
 		8473B0452106C95E00F980D7 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473B0442106C95E00F980D7 /* AppViewModel.swift */; };
 		8473B0472106C9B600F980D7 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473B0462106C9B600F980D7 /* AppNavigator.swift */; };
+		847B7668211C490D00AA711B /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B7667211C490D00AA711B /* AboutAppViewController.swift */; };
+		8480B39F211D6430002536D9 /* TrainerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480B39E211D6430002536D9 /* TrainerDetailViewController.swift */; };
+		8480B3A1211D720A002536D9 /* AppDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8480B3A0211D720A002536D9 /* AppDetail.storyboard */; };
+		8480B3A3211D7AE4002536D9 /* DongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480B3A2211D7AE4002536D9 /* DongViewController.swift */; };
+		8480B3A5211D7B18002536D9 /* HaiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480B3A4211D7B18002536D9 /* HaiViewController.swift */; };
+		8480B3A9211DA4CE002536D9 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480B3A8211DA4CE002536D9 /* UIColor+.swift */; };
 		8481E95B210EE99A000BFC66 /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8481E95A210EE99A000BFC66 /* MovieDetail.storyboard */; };
 		8481E95E210EF683000BFC66 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481E95D210EF683000BFC66 /* MovieDetailViewController.swift */; };
 		8481E966210F0203000BFC66 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481E964210F0203000BFC66 /* PersonCell.swift */; };
@@ -232,6 +238,12 @@
 		8473B0422106C8E900F980D7 /* AppUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUseCase.swift; sourceTree = "<group>"; };
 		8473B0442106C95E00F980D7 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		8473B0462106C9B600F980D7 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		847B7667211C490D00AA711B /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		8480B39E211D6430002536D9 /* TrainerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerDetailViewController.swift; sourceTree = "<group>"; };
+		8480B3A0211D720A002536D9 /* AppDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppDetail.storyboard; sourceTree = "<group>"; };
+		8480B3A2211D7AE4002536D9 /* DongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DongViewController.swift; sourceTree = "<group>"; };
+		8480B3A4211D7B18002536D9 /* HaiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaiViewController.swift; sourceTree = "<group>"; };
+		8480B3A8211DA4CE002536D9 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		8481E95A210EE99A000BFC66 /* MovieDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieDetail.storyboard; sourceTree = "<group>"; };
 		8481E95D210EF683000BFC66 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		8481E964210F0203000BFC66 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
@@ -640,6 +652,7 @@
 				8481E96E210F134F000BFC66 /* UIView+Rx.swift */,
 				846D023E210FF8530047FC46 /* UIImageView+Rx.swift */,
 				846D0254211054410047FC46 /* String+.swift */,
+				8480B3A8211DA4CE002536D9 /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -647,6 +660,7 @@
 		8473B0402106C7F800F980D7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				847B7666211C48FA00AA711B /* About App Screen */,
 				84B90963211837B5001BE765 /* Review Screen */,
 				27741D6E21171B9500BCB156 /* Person Screen */,
 				848EA5C721119AC8007BFD00 /* Favorite Screen */,
@@ -671,6 +685,17 @@
 				8473B0462106C9B600F980D7 /* AppNavigator.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		847B7666211C48FA00AA711B /* About App Screen */ = {
+			isa = PBXGroup;
+			children = (
+				847B7667211C490D00AA711B /* AboutAppViewController.swift */,
+				8480B39E211D6430002536D9 /* TrainerDetailViewController.swift */,
+				8480B3A2211D7AE4002536D9 /* DongViewController.swift */,
+				8480B3A4211D7B18002536D9 /* HaiViewController.swift */,
+			);
+			path = "About App Screen";
 			sourceTree = "<group>";
 		};
 		8481E95C210EF668000BFC66 /* Movie Detail Screen */ = {
@@ -728,6 +753,7 @@
 				8481E95A210EE99A000BFC66 /* MovieDetail.storyboard */,
 				27CE80C6210EAB4C006E5AD8 /* Search.storyboard */,
 				27741D77211777DA00BCB156 /* Person.storyboard */,
+				8480B3A0211D720A002536D9 /* AppDetail.storyboard */,
 			);
 			name = Storyboard;
 			path = TheMoviesReal/Sence/Storyboard;
@@ -836,6 +862,7 @@
 				844C5257210C5FA30025252B /* MovieType.storyboard in Resources */,
 				27960B792105DA4200740856 /* Assets.xcassets in Resources */,
 				8481E967210F0203000BFC66 /* PersonCell.xib in Resources */,
+				8480B3A1211D720A002536D9 /* AppDetail.storyboard in Resources */,
 				27CE80C7210EAB4C006E5AD8 /* Search.storyboard in Resources */,
 				84305355211AC1E800C515B4 /* GenreCell.xib in Resources */,
 				27960B742105DA4200740856 /* Main.storyboard in Resources */,
@@ -872,14 +899,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TheMoviesReal/Pods-TheMoviesReal-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Cards/Cards.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MKProgress/MKProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Player/Player.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
-				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -894,14 +922,15 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cards.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Player.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -995,9 +1024,11 @@
 				84B90969211837F9001BE765 /* ReviewNavigator.swift in Sources */,
 				849A3FEF21081CD2009D76EF /* GenreViewController.swift in Sources */,
 				84B9095C21182A08001BE765 /* ReviewRequest.swift in Sources */,
+				8480B3A9211DA4CE002536D9 /* UIColor+.swift in Sources */,
 				841118FB2106187E008939E4 /* ErrorResponse.swift in Sources */,
 				8411191021061991008939E4 /* GenreRepository.swift in Sources */,
 				846D024721100DE70047FC46 /* Crew.swift in Sources */,
+				8480B3A3211D7AE4002536D9 /* DongViewController.swift in Sources */,
 				27741D692116E8B100BCB156 /* Person.swift in Sources */,
 				841119072106191A008939E4 /* GenreListRequest.swift in Sources */,
 				8473B03B2106BB0E00F980D7 /* ErrorTracker.swift in Sources */,
@@ -1025,14 +1056,17 @@
 				8481E969210F03BE000BFC66 /* MovieDetailUseCase.swift in Sources */,
 				848EA5CB2111A07E007BFD00 /* FavoriteUseCase.swift in Sources */,
 				843CA60B2109AEE3003FFB68 /* ViewModelLoadMore.swift in Sources */,
+				847B7668211C490D00AA711B /* AboutAppViewController.swift in Sources */,
 				846D024321100C7E0047FC46 /* MovieCreditResponse.swift in Sources */,
 				2739489E2106D8F100E13B25 /* HomeCollectionViewCell.swift in Sources */,
 				844C525E210C60F70025252B /* MovieTypeUseCase.swift in Sources */,
 				278D30012109BE8E00DEF337 /* MainUseCase.swift in Sources */,
 				849A3FF021081CD2009D76EF /* GenreViewModel.swift in Sources */,
+				8480B3A5211D7B18002536D9 /* HaiViewController.swift in Sources */,
 				27741D6B2117002D00BCB156 /* PersonRequest.swift in Sources */,
 				27741D702117296B00BCB156 /* PersonViewController.swift in Sources */,
 				27CE80CE210EB29A006E5AD8 /* SearchUseCase.swift in Sources */,
+				8480B39F211D6430002536D9 /* TrainerDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,6 @@ struct SearchViewModel: ViewModelType {
         let loadMoreTrigger: Driver<Void>
         let selectMovieTrigger: Driver<IndexPath>
         let dismissKeyboardFromCollectionViewTrigger: Driver<GestureRecognizer>
-        let dismissKeybroadFromViewTrigger: Driver<UITapGestureRecognizer>
     }
 
     struct Output {
@@ -33,7 +32,6 @@ struct SearchViewModel: ViewModelType {
         let selectedMovie: Driver<Void>
         let isEmptyData: Driver<Bool>
         let dismissKeyboardFromCollectionView: Driver<Void>
-        let dismissKeyboardFromView: Driver<Void>
     }
     
     let navigator: SearchNavigatorType
@@ -85,9 +83,6 @@ struct SearchViewModel: ViewModelType {
         let dismissKeybroadFromCollectionView = input.dismissKeyboardFromCollectionViewTrigger
             .mapToVoid()
         
-        let dismissKeyboardFromView = input.dismissKeybroadFromViewTrigger
-            .mapToVoid()
-        
         return Output(
             movieList: movieList,
             loading: Loading,
@@ -97,8 +92,7 @@ struct SearchViewModel: ViewModelType {
             error: loadError,
             selectedMovie: selectedMovie,
             isEmptyData: isEmptyData,
-            dismissKeyboardFromCollectionView: dismissKeybroadFromCollectionView,
-            dismissKeyboardFromView: dismissKeyboardFromView
+            dismissKeyboardFromCollectionView: dismissKeybroadFromCollectionView
         )
     }
 }
